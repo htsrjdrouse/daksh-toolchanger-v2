@@ -48,7 +48,7 @@ import("lock-body-bottom.stl");
 translate([-21.6,-40.35,0])color("pink")cube([46,3,13.4]);
 translate([-21.6,-40.35,34.4])color("pink")cube([46,3,13.4-8.3]);
 }
-//translate([-21.6-0+23,-40.35+30,9.15])rotate([90,0,0])#cylinder(r=3.3/2,h=100,$fn=300);
+translate([-21.6-0+23,-40.35+30,9.15])rotate([90,0,0])#cylinder(r=3.3/2,h=100,$fn=300);
 translate([-21.6-0+23-0.1,-40.35+30-13.5,9.25])rotate([90,90,0])cylinder(r=6.4/2,h=0.3+6.3,$fn=6);
 
 
