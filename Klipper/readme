@@ -61,4 +61,51 @@ I probably do not know what these gcode macros do in toolchange_management.cfg, 
 [gcode_macro SET_GLOBAL_Z_OFFSET]
 
 
+b. Also in crash_detection.cfg there are indications to tools 1-4 so here this file also needs to be modified:
+
+[gcode_macro VARIABLES_LIST]
+variable_tools:[0,1,2,3,4]   <- modify to [0,1]
+variable_active_tool:-1
+variable_tc_state:0 #-1:Error, 0: Operational
+variable_tc_error_code:0 # 0: No Error, 1: No Tool Attached to Carriage, 2: Tool Dock Failure, 3: Multiple Tools Attached  
+variable_global_z_offset:0
+variable_error_tools:[]
+variable_t0_used_in_print:0
+variable_t1_used_in_print:0
+variable_t2_used_in_print:0   <- delete
+variable_t3_used_in_print:0   <- delete
+variable_t4_used_in_print:0   <- delete
+variable_print_status:0
+variable_current_layer:0
+variable_current_bed_temp:0
+variable_pause_type:0 # 0: No Error, 1:ToolChanger Error 2: Filament Error
+
+gcode:
+
+
+
+
+In crash_detection.cfg, has these macros which I do not know what they all do. 
+
+There is also a bunch fo gcode macros in crash_detection.cfg:
+[gcode_macro VARIABLES_LIST]
+[gcode_macro _EVALUATE_MACHINE_STATE_QUICK]
+[gcode_macro _EVALUATE_MACHINE_STATE]
+[gcode_macro _SET_CURRENT_TOOL]
+[gcode_macro GET_TOOLS_FOR_PRINT]
+[gcode_macro RESET_TOOLS_FOR_PRINT]
+[gcode_macro SET_TOOL_FOR_PRINT]
+[gcode_macro SET_PRINT_STATUS_START]
+[gcode_macro RESET_PRINT_STATUS]
+[gcode_macro SET_CURRENT_PRINT_LAYER]
+[gcode_macro _INITIALIZE_ALL_TOOLS]
+[gcode_macro RESET_DELAY_AND_CHECK_MACHINE_STATUS]
+[gcode_macro VERIFY_TOOLCHANGE_DURING_PRINT]
+[gcode_macro RESET_TOOLCHANGER]
+[gcode_macro PAUSE_AND_ALERT]
+
+   
+
+
+
 
