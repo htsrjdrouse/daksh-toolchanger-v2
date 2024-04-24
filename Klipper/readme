@@ -2,8 +2,8 @@ I am trying to figure out how to run this code and am providing some notes as I 
 
 1. One of the things you need to do when installing this is that you need to move the files in the modules folder into  ~/klipper/klippy/extras/, not moving the modules directory and subdirectories, but the files in the directory/subdirectories. 
 2. If you use less or more tools then just 4 (in my case I am using 2), then you need to make sure you indicate that. I am not sure in what areas of the code this needs to be done. So here is a list of areas that may need to be modified:
-  a. In toolchange_management.cfg, you have this code
-<code>
+  a. In toolchange_management.cfg, you have this code (currently I do not know what these gcode macros do)
+
 [gcode_macro CYCLE_ALL_TOOLS]
 gcode:
      SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=1
@@ -15,6 +15,50 @@ gcode:
      INITIALIZE_TOOL_USE_COUNT
      T{params.FINAL_TOOL}
      SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=0
-</code>
+
+[gcode_macro TEST_TOOLS]
+  gcode:
+    SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=1
+    G28
+    G0 X126 Y250
+    {% for move in range(50) %}
+        T0
+        #KTCC_TOOL_DROPOFF_ALL
+        T1
+        T2 <- delete
+        T3 <- delete
+        T4 <- delete
+    {% endfor %}
+    T0
+    SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=0
+
+I probably do not know what these gcode macros do in toolchange_management.cfg, but here is the list of them:
+[gcode_macro STORE_TOOLHEAD_POSITION]
+[gcode_macro CLEAR_TOOLHEAD_POSITION]
+[gcode_macro RETRIEVE_TOOLHEAD_POSITION]
+[gcode_macro SET_RSCS_FAN_STATUS]
+[gcode_macro RSCS_on]
+[gcode_macro RSCS_off]
+[gcode_macro RSCS_LAYER_CHECK]
+[gcode_macro TOOLCHANGE_Z_MOVE_START]
+[gcode_macro TOOLCHANGE_Z_MOVE_END]
+[gcode_macro CHECK_CORRECT_TOOL_LOADED]
+[gcode_macro CYCLE_ALL_TOOLS]
+[gcode_macro FILAMENT_EXTRA_EXTRUDE_LENGTH]
+[gcode_macro SET_FILAMENT_EXTRA_EXTRUDE_LENGTH]
+[gcode_macro RESET_FILAMENT_EXTRA_EXTRUDE_LENGTH]
+[gcode_macro GET_FILAMENT_EXTRA_EXTRUDE_LENGTH]
+[gcode_macro NOZZLE_WIPE_VARIABLE]
+[gcode_macro NOZZLE_WIPE_ON]
+[gcode_macro NOZZLE_WIPE_RESET]
+[gcode_macro GET_NOZZLE_WIPE]
+[gcode_macro TOOLHEAD_INFO]
+[gcode_macro TEST_UNLOCK]
+[gcode_macro TEST_LOCK]
+[gcode_macro HOME_XY]
+[gcode_macro TEST_TOOLS]
+[gcode_macro T_1]
+[gcode_macro SET_GLOBAL_Z_OFFSET]
+
 
 
