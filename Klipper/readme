@@ -83,8 +83,6 @@ variable_pause_type:0 # 0: No Error, 1:ToolChanger Error 2: Filament Error
 gcode:
 
 
-
-
 In crash_detection.cfg, has these macros which I do not know what they all do. 
 
 There is also a bunch fo gcode macros in crash_detection.cfg:
