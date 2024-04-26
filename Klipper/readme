@@ -109,8 +109,10 @@ There is also a bunch fo gcode macros in crash_detection.cfg:
 
 
 3. I don't want to use the tool probe, so need to remove this:
-
 In toolchanger.cfg, need to comment out this line:  SET_ACTIVE_TOOL_PROBE T={params.T}
+
+4. Needed to comment this out: SET_ENCLOSURE_DEFAULT. 
+This is in crash_detection.cfg and in klipper_toolchanger/pause_resume.cfg
 
 
 
