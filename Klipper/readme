@@ -108,10 +108,9 @@ There is also a bunch fo gcode macros in crash_detection.cfg:
 [gcode_macro PAUSE_AND_ALERT]
 
 
-3. Also one thing not mentioned or set up in the original Daksh repo (when I was setting it up), is the [save_variables] module wasn't set up. So you need to set this up or you will get stuck:</li>
+3. I don't want to use the tool probe, so need to remove this:
 
-[save_variables]
-filename:variable.cfg
+In toolchanger.cfg, need to comment out this line:  SET_ACTIVE_TOOL_PROBE T={params.T}
 
 
 
