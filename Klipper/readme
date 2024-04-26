@@ -66,8 +66,7 @@ Here is the list of them:
 
 
 b. Also in crash_detection.cfg there are indications to tools 1-4 so here this file also needs to be modified:
-markdown
-```
+
 [gcode_macro VARIABLES_LIST]
 variable_tools:[0,1,2,3,4]   <- modify to [0,1]
 variable_active_tool:-1
@@ -86,7 +85,6 @@ variable_current_bed_temp:0
 variable_pause_type:0 # 0: No Error, 1:ToolChanger Error 2: Filament Error
 
 gcode:
-```
 
 
 In crash_detection.cfg, has these macros. 
@@ -111,10 +109,10 @@ There is also a bunch fo gcode macros in crash_detection.cfg:
 
 
 3. Also one thing not mentioned or set up in the original Daksh repo (when I was setting it up), is the [save_variables] module wasn't set up. So you need to set this up or you will get stuck:</li>
-```
+
 [save_variables]
 filename:variable.cfg
-```
+
 
 
 
