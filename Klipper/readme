@@ -111,8 +111,14 @@ There is also a bunch fo gcode macros in crash_detection.cfg:
 3. I don't want to use the tool probe, so need to remove this:
 In toolchanger.cfg, need to comment out this line:  SET_ACTIVE_TOOL_PROBE T={params.T}
 
-4. Needed to comment this out: SET_ENCLOSURE_DEFAULT. 
+4. Commented this out: SET_ENCLOSURE_DEFAULT. 
 This is in crash_detection.cfg and in klipper_toolchanger/pause_resume.cfg
+
+5. Commented out: SET_STATUS_LED_LOCK
+Klipper/config/klipper_toolchanger/pause_resume.cfg:		SET_STATUS_LED_LOCK T={printer["gcode_macro VARIABLES_LIST"].active_tool}
+Klipper/config/crash_detection.cfg:			SET_STATUS_LED_LOCK T={tool}
+Klipper/config/toolchanger.cfg:  SET_STATUS_LED_LOCK T={params.T}
+Klipper/config/toolchanger.cfg:    SET_STATUS_LED_LOCK T={tool}
 
 
 
