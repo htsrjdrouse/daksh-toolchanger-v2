@@ -115,25 +115,5 @@ filename:variable.cfg
 
 
 
-markdown
-# My README
-
-## Unordered List
-
-- First item
-- Second item
-  - Nested item 1
-  - Nested item 2
-- Third item
-
-## Code Block
-
-Here is some inline code: `print("Hello, World!")`
-
-And here is a fenced code block:
-
-```python
-def hello():
-    print("Hello, World!")
 
 
