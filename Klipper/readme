@@ -132,5 +132,22 @@ Klipper/config/crash_detection.cfg:  	 SET_STATUS_LED_NOT_IN_USE T={tool}
 
 8. Had to add this, ktcc_dock_move_speed = 3000 in variables.cfg
 
+9. Also in status_led.cfg, I commented out the enclosure stuff, like so:
+
+#[gcode_macro LED_ENCLOSURE_EFFECT_STOP]
+#gcode:
+#   SET_LED_EFFECT EFFECT=enclosure_error STOP=1
+#   SET_LED_EFFECT EFFECT=enclosure_default STOP=1
+
+#[gcode_macro SET_ENCLOSURE_ERROR_START]
+#gcode:
+#      LED_ENCLOSURE_EFFECT_STOP
+#      SET_LED_EFFECT EFFECT=enclosure_error  
+   
+#[gcode_macro SET_ENCLOSURE_DEFAULT]
+#gcode:
+#      LED_ENCLOSURE_EFFECT_STOP
+#      SET_LED_EFFECT EFFECT=enclosure_default 
+
 
 
