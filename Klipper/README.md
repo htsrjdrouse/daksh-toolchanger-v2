@@ -36,40 +36,10 @@ gcode:
     SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=0
 ```
 
-Here is the list of them:
-
-[gcode_macro STORE_TOOLHEAD_POSITION]
-[gcode_macro CLEAR_TOOLHEAD_POSITION]
-[gcode_macro RETRIEVE_TOOLHEAD_POSITION]
-[gcode_macro SET_RSCS_FAN_STATUS]
-[gcode_macro RSCS_on]
-[gcode_macro RSCS_off]
-[gcode_macro RSCS_LAYER_CHECK]
-[gcode_macro TOOLCHANGE_Z_MOVE_START]
-[gcode_macro TOOLCHANGE_Z_MOVE_END]
-[gcode_macro CHECK_CORRECT_TOOL_LOADED]
-[gcode_macro CYCLE_ALL_TOOLS]
-[gcode_macro FILAMENT_EXTRA_EXTRUDE_LENGTH]
-[gcode_macro SET_FILAMENT_EXTRA_EXTRUDE_LENGTH]
-[gcode_macro RESET_FILAMENT_EXTRA_EXTRUDE_LENGTH]
-[gcode_macro GET_FILAMENT_EXTRA_EXTRUDE_LENGTH]
-[gcode_macro NOZZLE_WIPE_VARIABLE]
-[gcode_macro NOZZLE_WIPE_ON]
-[gcode_macro NOZZLE_WIPE_RESET]
-[gcode_macro GET_NOZZLE_WIPE]
-[gcode_macro TOOLHEAD_INFO]
-[gcode_macro TEST_UNLOCK]
-[gcode_macro TEST_LOCK]
-[gcode_macro HOME_XY]
-[gcode_macro TEST_TOOLS]
-[gcode_macro T_1]
-[gcode_macro SET_GLOBAL_Z_OFFSET]
-
-
-b. Also in crash_detection.cfg there are indications to tools 1-4 so here this file also needs to be modified:
-
+  b. Also in crash_detection.cfg there are indications to tools 1-4 so here this file also needs to be modified:
+```
 [gcode_macro VARIABLES_LIST]
-variable_tools:[0,1,2,3,4]   <- modify to [0,1]
+variable_tools:[0,1] ;changed from variable_tools:[0,1,2,3,4]
 variable_active_tool:-1
 variable_tc_state:0 #-1:Error, 0: Operational
 variable_tc_error_code:0 # 0: No Error, 1: No Tool Attached to Carriage, 2: Tool Dock Failure, 3: Multiple Tools Attached  
@@ -77,64 +47,50 @@ variable_global_z_offset:0
 variable_error_tools:[]
 variable_t0_used_in_print:0
 variable_t1_used_in_print:0
-variable_t2_used_in_print:0   <- delete
-variable_t3_used_in_print:0   <- delete
-variable_t4_used_in_print:0   <- delete
+;variable_t2_used_in_print:0   <- delete
+;variable_t3_used_in_print:0   <- delete
+;variable_t4_used_in_print:0   <- delete
 variable_print_status:0
 variable_current_layer:0
 variable_current_bed_temp:0
 variable_pause_type:0 # 0: No Error, 1:ToolChanger Error 2: Filament Error
 
 gcode:
+```
 
+  c.  I don't want to use the tool probe , so need to remove this in toolchanger.cfg, need to comment out this lines:
+```
+  ;SET_ACTIVE_TOOL_PROBE T={params.T} ; no setting active tool probe
+```
 
-In crash_detection.cfg, has these macros. 
-
-There is also a bunch fo gcode macros in crash_detection.cfg:
-
-[gcode_macro VARIABLES_LIST]
-[gcode_macro _EVALUATE_MACHINE_STATE_QUICK]
-[gcode_macro _EVALUATE_MACHINE_STATE]
-[gcode_macro _SET_CURRENT_TOOL]
-[gcode_macro GET_TOOLS_FOR_PRINT]
-[gcode_macro RESET_TOOLS_FOR_PRINT]
-[gcode_macro SET_TOOL_FOR_PRINT]
-[gcode_macro SET_PRINT_STATUS_START]
-[gcode_macro RESET_PRINT_STATUS]
-[gcode_macro SET_CURRENT_PRINT_LAYER]
-[gcode_macro _INITIALIZE_ALL_TOOLS]
-[gcode_macro RESET_DELAY_AND_CHECK_MACHINE_STATUS]
-[gcode_macro VERIFY_TOOLCHANGE_DURING_PRINT]
-[gcode_macro RESET_TOOLCHANGER]
-[gcode_macro PAUSE_AND_ALERT]
-
-
-3. I don't want to use the tool probe, so need to remove this:
-In toolchanger.cfg, need to comment out this line:  SET_ACTIVE_TOOL_PROBE T={params.T}
-
-4. Commented this out: SET_ENCLOSURE_DEFAULT. 
+  d. Commented this out: SET_ENCLOSURE_DEFAULT. 
 This is in crash_detection.cfg and in klipper_toolchanger/pause_resume.cfg
 
-5. Commented out: SET_STATUS_LED_LOCK
+  e. Commented out: SET_STATUS_LED_LOCK
+```   
 Klipper/config/klipper_toolchanger/pause_resume.cfg:		SET_STATUS_LED_LOCK T={printer["gcode_macro VARIABLES_LIST"].active_tool}
 Klipper/config/crash_detection.cfg:			SET_STATUS_LED_LOCK T={tool}
 Klipper/config/toolchanger.cfg:  SET_STATUS_LED_LOCK T={params.T}
 Klipper/config/toolchanger.cfg:    SET_STATUS_LED_LOCK T={tool}
+```
 
-5. Enabled [force_move] in printer_config.cfg like so:
+  f. Enabled [force_move] in printer_config.cfg like so:
+```   
 [force_move]
 enable_force_move: True
+```
 
-6. Commented out: SET_STATUS_LED_NOT_IN_USE
+  g. Commented out: SET_STATUS_LED_NOT_IN_USE
 Klipper/config/crash_detection.cfg:		  		SET_STATUS_LED_NOT_IN_USE T={tool}
 Klipper/config/crash_detection.cfg:  	 SET_STATUS_LED_NOT_IN_USE T={tool}
 
-7. In status_led.cfg, I had to remove all the tool references that are not being used, including the "neopixel cled" stuff 
+  h. In status_led.cfg, I had to remove all the tool references that are not being used, including the "neopixel cled" stuff 
 
-8. Had to add this, ktcc_dock_move_speed = 3000 in variables.cfg
+  i. Had to add this, ktcc_dock_move_speed = 3000 in variables.cfg
 
-9. Also in status_led.cfg, I commented out the enclosure stuff, like so:
+  j. Also in status_led.cfg, I commented out the enclosure stuff, like so:
 
+```
 #[gcode_macro LED_ENCLOSURE_EFFECT_STOP]
 #gcode:
 #   SET_LED_EFFECT EFFECT=enclosure_error STOP=1
@@ -149,6 +105,6 @@ Klipper/config/crash_detection.cfg:  	 SET_STATUS_LED_NOT_IN_USE T={tool}
 #gcode:
 #      LED_ENCLOSURE_EFFECT_STOP
 #      SET_LED_EFFECT EFFECT=enclosure_default 
-
+```
 
 
