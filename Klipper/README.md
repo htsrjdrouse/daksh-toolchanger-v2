@@ -4,10 +4,9 @@ I am trying to figure out how to run this code and am providing some notes as I 
    
 2. If you use less or more tools then just 4 (in my case I am using 2), then you need to make sure you indicate that. Here is a list of areas that may need to be modified:</li>
 
+ a. In toolchange_management.cfg, you have this code (currently I do not know what these gcode macros do)
 
-   a. In toolchange_management.cfg, you have this code (currently I do not know what these gcode macros do)
-
-<code>
+<ul>
 [gcode_macro CYCLE_ALL_TOOLS]
 gcode:
      SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=1
@@ -36,7 +35,7 @@ gcode:
     T0
     SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=0
 </code>
-
+</ul>
 Here is the list of them:
 
 [gcode_macro STORE_TOOLHEAD_POSITION]
