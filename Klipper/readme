@@ -128,7 +128,7 @@ enable_force_move: True
 Klipper/config/crash_detection.cfg:		  		SET_STATUS_LED_NOT_IN_USE T={tool}
 Klipper/config/crash_detection.cfg:  	 SET_STATUS_LED_NOT_IN_USE T={tool}
 
-7. In status_led.cfg, I had to remove all the tool references that are not being used. 
+7. In status_led.cfg, I had to remove all the tool references that are not being used, including the "neopixel cled" stuff 
 
 
 
