@@ -65,12 +65,12 @@ gcode:
 This is in crash_detection.cfg and in klipper_toolchanger/pause_resume.cfg
 
   5. Commented out: SET_STATUS_LED_LOCK
-```   
+  
 Klipper/config/klipper_toolchanger/pause_resume.cfg:		SET_STATUS_LED_LOCK T={printer["gcode_macro VARIABLES_LIST"].active_tool}
 Klipper/config/crash_detection.cfg:			SET_STATUS_LED_LOCK T={tool}
 Klipper/config/toolchanger.cfg:  SET_STATUS_LED_LOCK T={params.T}
 Klipper/config/toolchanger.cfg:    SET_STATUS_LED_LOCK T={tool}
-```
+
 
   6. Enabled [force_move] in printer_config.cfg like so:
 ```   
