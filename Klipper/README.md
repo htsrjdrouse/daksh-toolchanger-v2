@@ -1,7 +1,7 @@
 I am trying to figure out how to run this code and am providing some notes as I get a handle of this. There are some tool differences between the original daksh design and my version namely the optical probe sensor will be used used but instead use a detachable probe but this could still use the same pin, also (just because I accidently purchased the EBB42 instead of the EBB36), the pin designation will be different in some cases since I also am using EBB36 too. Also, instead of 4 tools, I am just going to use 2. 
-<ul><ol>
-<li></li>1. One of the things you need to do when installing this is that you need to move the files in the modules folder into  ~/klipper/klippy/extras/, not moving the modules directory and subdirectories, but the files in the directory/subdirectories. </li>
-<li></li>2. If you use less or more tools then just 4 (in my case I am using 2), then you need to make sure you indicate that. Here is a list of areas that may need to be modified:</li>
+<ul>
+# 1. One of the things you need to do when installing this is that you need to move the files in the modules folder into  ~/klipper/klippy/extras/, not moving the modules directory and subdirectories, but the files in the directory/subdirectories.
+# 2. If you use less or more tools then just 4 (in my case I am using 2), then you need to make sure you indicate that. Here is a list of areas that may need to be modified:</li>
 
 </ul>
 
