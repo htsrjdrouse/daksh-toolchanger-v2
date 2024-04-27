@@ -6,7 +6,6 @@ I am trying to figure out how to run this code and am providing some notes as I 
 
  a. In toolchange_management.cfg, you have this code (currently I do not know what these gcode macros do)
 
-<ul>
    ```
 [gcode_macro CYCLE_ALL_TOOLS]
 gcode:
@@ -35,8 +34,8 @@ gcode:
     {% endfor %}
     T0
     SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=0
-```
-</ul>
+
+
 Here is the list of them:
 
 [gcode_macro STORE_TOOLHEAD_POSITION]
