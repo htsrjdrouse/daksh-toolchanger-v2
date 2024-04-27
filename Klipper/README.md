@@ -12,9 +12,9 @@ gcode:
      SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=1
      T0
      T1
-     T2 <- delete
-     T3 <- delete
-     T4 <- delete
+     ;T2 <- delete
+     ;T3 <- delete
+     ;T4 <- delete
      INITIALIZE_TOOL_USE_COUNT
      T{params.FINAL_TOOL}
      SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=0
@@ -28,13 +28,13 @@ gcode:
         T0
         #KTCC_TOOL_DROPOFF_ALL
         T1
-        T2 <- delete
-        T3 <- delete
-        T4 <- delete
+        ;T2 <- delete
+        ;T3 <- delete
+        ;T4 <- delete
     {% endfor %}
     T0
     SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=0
-
+```
 
 Here is the list of them:
 
