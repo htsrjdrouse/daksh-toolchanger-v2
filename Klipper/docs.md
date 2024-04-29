@@ -13,7 +13,7 @@ This configuration is for just 2 tools and there is just 1 detachable z sensor p
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/status_led_docs.md
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/filament_sensors_docs.md
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/tool_usage_docs.md
-## The klipper_toolchanger directory contains KTCC (https://github.com/TypQxQ/Klipper_ToolChanger/tree/master) gcodes   
+## The klipper_toolchanger directory contains KTCC (https://github.com/TypQxQ/Klipper_ToolChanger/tree/master) gcodes that is also called by toolchanger.cfg  
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/klipper_toolchanger/toolchange_management_docs.md
 Are these .cfgs originally from ktcc?
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/klipper_toolchanger/pause_resume_docs.md
