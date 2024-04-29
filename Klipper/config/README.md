@@ -283,4 +283,24 @@ gcode:
   
 </details>
 
+#### Tool Management For Current Print
 
+<details><summary>GET_TOOLS_FOR_PRINT</summary>
+
+
+```
+[gcode_macro GET_TOOLS_FOR_PRINT]
+gcode:
+        {% set allTools = printer["gcode_macro VARIABLES_LIST"].tools %}
+        {% set toolsforprint= [] %}
+        {% for tool in allTools %}
+                {% if printer["gcode_macro VARIABLES_LIST"]["t"~tool~"_used_in_print"]|int == 1%}
+                        {toolsforprint.append(tool)}
+                {% endif %}
+        {% endfor %}
+        #M118 Tools Used In Current Print: {toolsforprint}
+```
+
+
+</details>
+  
