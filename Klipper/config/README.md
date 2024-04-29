@@ -3,6 +3,12 @@
 
 These files located in ~/printer_data/config/
 
+
+<details>
+  <summary>Click to expand</summary>
+  Additional details go here...
+</details>
+
 - crash_detection.cfg
 - dock_calibrate.cfg
 - filament_sensors.cfg
