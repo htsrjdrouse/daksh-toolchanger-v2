@@ -303,4 +303,17 @@ gcode:
 
 
 </details>
+
+<details><summary>RESET_TOOLS_FOR_PRINT</summary>
+
+```
+[gcode_macro RESET_TOOLS_FOR_PRINT]
+gcode:
+  {% set allTools = printer["gcode_macro VARIABLES_LIST"].tools %}
+  {% for tool in allTools %}
+          SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=t{tool}_used_in_print VALUE=0
+  {% endfor %}
+```
+
+</details>
   
