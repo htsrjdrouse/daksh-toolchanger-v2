@@ -78,3 +78,164 @@ gcode:
 
 </details>
 
+<details><summary>_EVALUATE_MACHINE_STATE</summary>
+
+```
+[gcode_macro _EVALUATE_MACHINE_STATE]
+gcode:
+
+  {% set allTools = printer["gcode_macro VARIABLES_LIST"].tools %}
+  {% set activeTools = [] %}
+  {% set dockedTools = [] %}
+  {% set accountedTools = [] %}
+  {% set errorTools = [] %}
+
+  {% for tool in allTools %}
+        #Find All Tools attached to the carriage - should be only 1
+        {% if printer["atc_switch tc"~tool].state == "PRESSED" %}
+                {activeTools.append(tool|int)}
+                {accountedTools.append(tool|int)}
+        {% endif %}
+
+        #Find All Tools attached to the docks - should be maximum num tools               
+        {% if printer["atc_switch td"~tool].state == "PRESSED" %}
+                {dockedTools.append(tool|int)}
+                {accountedTools.append(tool|int)}
+        {% endif %}
+  {% endfor %}
+
+
+
+  #Ensure each tool only shows up either in active or docked list - if not, throw error with the specific tool
+
+  #M118 Active Tools {activeTools}
+  #M118 Docked Tools {dockedTools}
+
+  {% if (activeTools|length|int <= 1) and (activeTools|length + dockedTools|length ==  allTools|length ) %}
+
+                #All Is Well- all tools are accounted for 
+                M118 "All Tools Accounted For - Proceeding with Normal Startup"
+                {% if activeTools|length > 0 %}
+                        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=active_tool VALUE={activeTools[0]}
+                {% else %}
+                        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=active_tool VALUE=-1 #No Tool Attached
+                {% endif %}
+
+                SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_state VALUE=0
+                SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_error_code VALUE=0
+
+  {% else %}
+                #Check if multiple tools are showing up as attached to carriage - could be an issue with the carriage attach hall effect sensor on a docked tool returning a success
+                  {% if (activeTools|length == 0) and (dockedTools|length <  allTools|length ) %}
+
+                        # A Tool should be attached to the carriage but isnt - maybe it has fallen off during printing
+                        M118 " A Tool should be attached to the carriage but No Tool is present"
+
+                        {% set allToolsTemp = allTools %}
+                        {% for tool in accountedTools %}
+                                {allToolsTemp.pop(allToolsTemp.index(tool))}
+                        {% endfor %}
+
+                        {% for tool in allToolsTemp %}
+                                {errorTools.append(tool)}
+                        {% endfor %}
+
+                        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_state VALUE=-1
+                        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_error_code VALUE=1
+
+                  {% else %}
+                        {% if activeTools|length > 1 %}
+
+                                {% set allToolsTemp = allTools %}
+                                M118 "Multiple Tools Showing up as attached to carriage"
+
+                                {% for tool in activeTools %}
+                                        {% if printer["atc_switch tc"~tool].state == "PRESSED" and printer["atc_switch td"~tool].state == "PRESSED" %}
+                                                {errorTools.append(tool)}
+                                        {% endif %}
+                                {% endfor %}
+
+                                SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_state VALUE=-1
+                                SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_error_code VALUE=3
+
+                        {% else %}
+                                # Check if any tools shows up in both active and docked lists - possible if the carriage is sitting flush with a tool while it is still in dock
+{% if activeTools|length + dockedTools|length > allTools|length and printer["gcode_macro VARIABLES_LIST"]["print_status"]|int != 1 %}
+                                        M118 "Error: Tools are showing up in both active and docked list"
+                                        {% set dockedToolsTemp = dockedTools %}
+
+                                        {% for tool in activeTools %}
+                                                        {errorTools.append(dockedToolsTemp.pop(dockedToolsTemp.index(tool)))}
+                                        {% endfor %}
+                                        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_state VALUE=-1
+                                        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_error_code VALUE=4   
+                                        {% else %}
+                                                #Check if any of the tools supposed to be docked is not properly seated in the dock
+                                                {% if dockedTools|length !=  allTools|length - 1 %}
+
+                                                                M118 "Mismatch in number of tools docked"
+
+                                                                {% set allToolsTemp = allTools %}
+                                                                {% for tool in accountedTools %}
+                                                                        {allToolsTemp.pop(allToolsTemp.index(tool))}
+                                                                {% endfor %}
+
+                                                                {% for tool in allToolsTemp %}
+                                                                        {errorTools.append(tool)}
+                                                                {% endfor %}
+
+                                                                SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_state VALUE=-1
+                                                                SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=tc_error_code VALUE=2
+
+                                                {% endif %}
+                                        {% endif %}
+                        {% endif %}
+                {% endif %}
+  {% endif %}
+
+
+  {% if errorTools|length > 0 %}
+        # Error Tools Found  - set the LEDS on error tools and enclosure to the ERROR state
+        M118 "Error Tools: " {errorTools}
+        {% for tool in errorTools %}
+           #Blink STATUS LEDS on the Error Tools
+                SET_STATUS_LED_ERROR_START T={tool}
+        {% endfor %}
+        SET_ENCLOSURE_ERROR_START
+        PAUSE_AND_ALERT
+  {% else %}
+
+          # All Checked out - set the LEDS on all tools and enclosure to the default ALL OK state
+          {% if activeTools|length > 0 %}
+                {% for tool in activeTools %}
+                        #M118 "Set Active Tool {tool}"
+                        ;SET_STATUS_LED_LOCK T={tool}
+                        _SET_CURRENT_TOOL T={tool}
+                {% endfor %}
+          {% else %}
+                         # M118 "Set Active Tool {tool}"
+                        _SET_CURRENT_TOOL T=-1
+          {% endif %}
+
+
+
+          {% for tool in dockedTools %}
+                {% if printer["gcode_macro VARIABLES_LIST"]["print_status"]|int == 1%}
+                        {% if printer["gcode_macro VARIABLES_LIST"]["t"~tool~"_used_in_print"]|int == 1%}
+                                SET_STATUS_LED_DOCK T={tool}
+                        {% else %}
+                                SET_STATUS_LED_NOT_IN_USE T={tool}
+                        {% endif %}
+                {% else %}
+                                SET_STATUS_LED_DOCK T={tool}                    
+                {% endif %}
+          {% endfor %}
+
+          ;SET_ENCLOSURE_DEFAULT  
+
+  {% endif %}
+
+
+```
+  
+</details>
