@@ -345,10 +345,7 @@ gcode:
     {% for move in range(50) %}
         T0
         #KTCC_TOOL_DROPOFF_ALL
-        T1
-        T2
-        T3
-        T4   
+        T1 
     {% endfor %}
     T0
     SET_GCODE_VARIABLE MACRO=STORE_TOOLHEAD_POSITION VARIABLE=bypass_toolhead_position VALUE=0
