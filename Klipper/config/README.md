@@ -6,9 +6,7 @@ These files located in ~/printer_data/config/
 ### 1\. crash_detection.cfg - INTELLIGENT ERROR DETECTION
 
 <details>
-<summary><sub>🔹 VARIABLES_LIST.</sub></summary>
-
-#### Optional hardware - Encoder
+<summary>####VARIABLES_LIST</summary>
 
 ```
 [gcode_macro VARIABLES_LIST]
