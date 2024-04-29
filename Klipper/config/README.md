@@ -8,8 +8,7 @@ These files located in ~/printer_data/config/
   INTELLIGENT ERROR DETECTION
   <summary>VARIABLES_LIST</summary>
   <details>
-    <code>
-[gcode_macro VARIABLES_LIST]
+```[gcode_macro VARIABLES_LIST]
 variable_tools:[0,1]
 variable_active_tool:-1
 variable_tc_state:0 #-1:Error, 0: Operational
@@ -24,8 +23,8 @@ variable_current_bed_temp:0
 variable_pause_type:0 # 0: No Error, 1:ToolChanger Error 2: Filament Error
 
 gcode:
-    </code>
-  </details>
+```
+</details>
 </details>
 
 - crash_detection.cfg
