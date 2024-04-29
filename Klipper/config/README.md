@@ -6,8 +6,7 @@ These files located in ~/printer_data/config/
 - <details>
   <summary>crash_detection.cfg</summary>
   INTELLIGENT ERROR DETECTION
-  <summary>VARIABLES_LIST</summary>
-  <details>
+  <details></details>summary>VARIABLES_LIST</summary>
 ```[gcode_macro VARIABLES_LIST]
 variable_tools:[0,1]
 variable_active_tool:-1
@@ -21,7 +20,6 @@ variable_print_status:0
 variable_current_layer:0
 variable_current_bed_temp:0
 variable_pause_type:0 # 0: No Error, 1:ToolChanger Error 2: Filament Error
-
 gcode:
 ```
 </details>
