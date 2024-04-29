@@ -239,3 +239,48 @@ gcode:
 ```
   
 </details>
+
+<details><summary>_SET_CURRENT_TOOL</summary>
+
+```
+[gcode_macro _SET_CURRENT_TOOL]
+gcode:
+        SAVE_CURRENT_TOOL T={params.T}
+        {% if params.T|int > -1 %}
+                ;SET_ACTIVE_TOOL_PROBE T={params.T}
+                {% if params.T|int > 0 %}
+                        ACTIVATE_EXTRUDER EXTRUDER=extruder{params.T}
+                {% else %}
+                        ACTIVATE_EXTRUDER EXTRUDER=extruder
+                {% endif %}
+                {% if 't0_x_offset' not in printer.save_variables.variables %}
+                        {%set offset_x =  0 %}
+                        {%set offset_y =  0 %}
+                        {%set offset_z = 0 %}
+                {% else %}
+                        {% set offset_x =  printer.save_variables.variables['t'~params.T~'_x_offset']|float%}
+                        {% set offset_y =  printer.save_variables.variables['t'~params.T~'_y_offset']|float%}
+                        {% if params.T|int > 0 %}
+                                {%set offset_z =  printer.save_variables.variables['t0_z_offset']|float + printer.save_variables.variables['t'~params.T~'_z_offset']|float%}
+                        {% else %}
+                                {%set offset_z =  printer.save_variables.variables['t'~params.T~'_z_offset']|float %}
+                        {% endif %}
+                {% endif %}
+                #M118 T{params.T}
+                #M118 OFFSET X: {offset_x}
+                #M118 OFFSET Y: {offset_y}
+                #M118 OFFSET Z: {offset_z}
+
+                {% if printer.toolhead.homed_axes !="xyz" %}
+                        SET_KINEMATIC_POSITION X=160 Y=160 Z=100
+                {% endif %}
+
+                SET_GCODE_OFFSET X={offset_x|float} Y={offset_y|float} Z={offset_z|float} MOVE=1
+
+        {% endif %}
+
+```
+  
+</details>
+
+
