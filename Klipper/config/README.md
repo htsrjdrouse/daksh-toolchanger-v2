@@ -26,11 +26,6 @@ gcode:
 ```
 </details>
 
-<details>
-<summary>_EVALUATE_MACHINE_STATE_QUICK</summary>
-
-testing
-</details>
 
 
 
