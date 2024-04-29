@@ -1,4 +1,8 @@
 
+
+<details><summary>tools_calibrate</summary>
+
+```
 [tools_calibrate]
 pin: PG12
 travel_speed: 100
@@ -16,19 +20,34 @@ samples_tolerance:0.02
 samples_tolerance_retries:3
 # Decrease -> higher nozzle
 trigger_to_bottom_z: 3
+```
+</details>
 
+<details><summary>CALIBRATE_MOVE_OVER_PROBE</summary>
+
+```
 [gcode_macro _CALIBRATE_MOVE_OVER_PROBE]
 gcode:
     BED_MESH_CLEAR
     G0 Z62 F10000
     G0 X342.5 Y18.5 F10000
+```
+</details>
 
+<details><summary>CALIBRATE_MOVE_OVER_PROBE</summary>
+
+```
 [gcode_macro _CALIBRATE_MOVE_OVER_PROBE_PARAMS]
     gcode:
         BED_MESH_CLEAR
         G0 Z63 F10000
         G0 X{params.Y} Y{params.Y} F10000
+```
+</details>
 
+<details><summary>CALIBRATE_TOOL_OFFSETS</summary>
+
+```
 [gcode_macro CALIBRATE_TOOL_OFFSETS]
 gcode:
     {% set tools = [0,1,2,3,4] %}
@@ -49,8 +68,14 @@ gcode:
     {% endfor %}
     
     T{tools[0]}
-    
-[gcode_macro CHECK_ENDSTOP_REPEATABILITY]
+
+```
+</details>
+
+<details><summary>CALIBRATE_TOOL_OFFSETS</summary>
+
+```    
+[gcode_macro CALIBRATE_TOOL_OFFSETS]
     gcode:
 
         G32                
@@ -60,6 +85,12 @@ gcode:
             TOOL_LOCATE_SENSOR
         {% endfor %}
 
+```
+</details>
+
+<details><summary>_PICK_TOOL_AND_LOCATE_SENSOR</summary>
+
+```    
 [gcode_macro _PICK_TOOL_AND_LOCATE_SENSOR]
         gcode:
             T_1
@@ -67,8 +98,13 @@ gcode:
             _CALIBRATE_MOVE_OVER_PROBE    
             TOOL_LOCATE_SENSOR
             T_1
-    
+```
+</details>
 
+
+<details><summary>CHECK_TOOL_REPEATABILITY</summary>
+
+```    
 [gcode_macro CHECK_TOOL_REPEATABILITY]
     gcode:
     
@@ -79,7 +115,12 @@ gcode:
             TOOL_LOCATE_SENSOR
             KTCC_TOOL_DROPOFF_ALL
         {% endfor %}
+```
+</details>
 
+<details><summary>CALIBRATE_OFFSETS_TEST</summary>
+
+```    
 [gcode_macro CALIBRATE_OFFSETS_TEST]
     gcode:
     
@@ -105,8 +146,13 @@ gcode:
         {% endfor %}
         
         T{tools[0]}
+```
+</details>
+
+<details><summary>CALIBRATE_ONE_OFFSET</summary>
 
 
+```    
 [gcode_macro CALIBRATE_ONE_OFFSET]
 gcode:
     {% set tools = printer.toolchanger.tool_numbers %}
@@ -130,8 +176,14 @@ gcode:
     
     # Finish up
     SELECT_TOOL T=0 RESTORE_AXIS=XYZ
+```
+</details>
 
 
+<details><summary>CALIBRATE_NOZZLE_PROBE_OFFSET</summary>
+
+
+```
 [gcode_macro CALIBRATE_NOZZLE_PROBE_OFFSET]
 gcode:
     STOP_TOOL_PROBE_CRASH_DETECTION
@@ -142,10 +194,19 @@ gcode:
     TOOL_LOCATE_SENSOR
     TOOL_CALIBRATE_PROBE_OFFSET PROBE="tool_probe T0"
     M104 S0
-    
+```
+
+</details>
+
+<details><summary>TEST_TOOL_OFFSET</summary>
+
+```    
 [gcode_macro TEST_TOOL_OFFSET]
 gcode:
     T_1
     T{params.T}
     SET_GCODE_OFFSET X_ADJUST={params.OFFSET_X|float} Y_ADJUST={params.OFFSET_Y|float} Z={params.OFFSET_Z|float}
     G1 X{params.X} Y{params.Y} Z{params.Z} F10000
+
+```
+</details>
