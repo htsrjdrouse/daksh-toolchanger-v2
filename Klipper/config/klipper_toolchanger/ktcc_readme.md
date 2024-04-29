@@ -16,7 +16,7 @@ The optional macros are to add more commands for higher compatibility with for e
 <br>
 
 
-## ![#f03c15](/Klipper/config/doc/f03c15.png) ![#c5f015](/Klipper/config/doc/c5f015.png) ![#1589F0](/Klipper/config/doc/1589F0.png) Required macros
+## ![#f03c15](/Klipper/doc/f03c15.png) ![#c5f015](/Klipper/doc/c5f015.png) ![#1589F0](/Klipper/doc/1589F0.png) Required macros
 
   | Command | Description | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
   | ------- | ----------- | ---------- |
