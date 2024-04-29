@@ -330,4 +330,40 @@ gcode:
   
 </details>
 
+<details><summary>SET_PRINT_STATUS_START</summary>
+
+```
+[gcode_macro SET_PRINT_STATUS_START]
+gcode:
+        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=print_status VALUE=1
+
+``` 
+
+</details>
+
+<details><summary>RESET_PRINT_STATUS</summary>
+
+```
+[gcode_macro RESET_PRINT_STATUS]
+gcode:
+        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=print_status VALUE=0
+        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=current_layer VALUE=0
+        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=current_bed_temp VALUE=0
+```
+
+</details>
+
+<details><summary>SET_CURRENT_PRINT_LAYER</summary>
+
+```  
+[gcode_macro SET_CURRENT_PRINT_LAYER]
+        gcode:
+                #M118 LAYER: {params.LAYER}
+                #M118 BEDTEMP: {params.BEDTEMP}
+
+                SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=current_layer VALUE={params.LAYER}
+                SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=current_bed_temp VALUE={params.BEDTEMP}
+```
+
+</details>
   
