@@ -4,10 +4,10 @@
 These files located in ~/printer_data/config/
 
 <details> <summary>Click to show code block</summary>
-````python
+~~~python
 def hello_world():
     print("Hello, World!")
-````
+~~~
 </details> 
 
 
