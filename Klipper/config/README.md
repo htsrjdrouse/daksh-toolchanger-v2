@@ -449,3 +449,25 @@ gcode:
 ```
 </details>
 
+<details><summary>INITIALIZE_TOOLCHANGER</summary>
+
+```
+[delayed_gcode INITIALIZE_TOOLCHANGER]
+initial_duration: 1
+gcode:
+        RESET_TOOLCHANGER
+```
+
+</details>
+
+<details><summary>PAUSE_AND_ALERT</summary>
+
+```
+[gcode_macro PAUSE_AND_ALERT]
+gcode:
+        SET_PAUSE_TYPE TYPE=1 # Set Pause Type to Toolchanger State Error
+        PAUSE
+        #SEND_SLACK_MESSAGE MSG="FILAMENT ERROR DETECTED - PRINT PAUSED - PLEASE CHECK. T={params.T}}"
+```
+
+</details>
