@@ -1,9 +1,5 @@
 
-<h2>Gcode files relevant to the Dakash toolchanger system</h2>
-
-These files located in ~/printer_data/config/
-
-### 1\. crash_detection.cfg - INTELLIGENT ERROR DETECTION
+### crash_detection.cfg - INTELLIGENT ERROR DETECTION
 
 <details>
 <summary>VARIABLES_LIST</summary>
