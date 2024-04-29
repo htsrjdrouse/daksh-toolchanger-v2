@@ -16,6 +16,8 @@ gcode:
 variable_max_accel: 0
 gcode:
   SET_GCODE_VARIABLE MACRO=SAVE_ACCELERATION VARIABLE=max_accel VALUE={printer.toolhead.max_accel}
+```
+
 </details>
 
 <details><summary>RESTORE_ACCELERATION</summary>
