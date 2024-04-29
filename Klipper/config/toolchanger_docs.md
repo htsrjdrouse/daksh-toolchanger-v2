@@ -3,6 +3,7 @@
 
 Following includes:
 
+```
 [include klipper_toolchanger/*.cfg]
 [include tools/*.cfg]
 [include calibrate-offsets.cfg]      
@@ -11,11 +12,12 @@ Following includes:
 [include status_led.cfg]
 [include filament_sensors.cfg]
 [include tool_usage.cfg]
-        
+       
       
 # Enables saving of variables between powerdown of machine. Must be configured before [toollock].
 [save_variables]
 filename:  ~/printer_data/config/variables.cfg
+```
 
 <details><summary>toollock</summary>
 
