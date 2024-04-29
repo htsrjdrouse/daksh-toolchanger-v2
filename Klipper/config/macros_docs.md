@@ -1,8 +1,10 @@
 #####################################################################
-# 	Macros
+## Macros
 #####################################################################
 
-  
+<details><summary>G32</summary>
+
+``` 
 [gcode_macro G32]
 gcode:
     BED_MESH_CLEAR
@@ -10,8 +12,13 @@ gcode:
     Z_TILT_ADJUST
     G28
     G0 X175 Y175 Z20 F6000
+```
+</details>
 
 
+<details><summary>PRIME_LINE</summary>
+
+``` 
 # prime the nozzle 
 [gcode_macro PRIME_LINE]
 gcode: 
@@ -32,8 +39,13 @@ gcode:
     G1 Z5.0 F3000                       ; move Z Axis up
     G1 X40 Y50 F2000.0 
     RESTORE_GCODE_STATE NAME=PRIME_LINE_state   
+```
+</details>
 
 
+<details><summary>PRINT_START</summary>
+
+``` 
 [gcode_macro PRINT_START]
 #   Use PRINT_START for the slicer starting script - please customise for your slicer of choice
 gcode:    
@@ -51,7 +63,13 @@ gcode:
     M107            ; turn fan off
     BEDMESHLOAD
     PRIME_LINE
+```
+</details>
 
+
+<details><summary>PRINT_END</summary>
+
+``` 
 [gcode_macro PRINT_END]
 #   Use PRINT_END for the slicer ending script - please customise for your slicer of choice
 gcode:
@@ -71,12 +89,23 @@ gcode:
     #AIR_FILTER_STOP
     BED_MESH_CLEAR
 
+```
+</details>
+
+
+<details><summary>NOZZLE_CLEAN</summary>
+
+``` 
 [gcode_macro NOZZLE_CLEAN]
 gcode:
    # G0 E1 F500
+```
+</details>
 
 
+<details><summary>NOZZLE_CLEAN1</summary>
 
+``` 
 [gcode_macro NOZZLE_CLEAN1]
 gcode:
     SAVE_GCODE_STATE NAME=BEFORE_CLEAN
@@ -96,6 +125,13 @@ gcode:
     G90   
     RESTORE_GCODE_STATE NAME=BEFORE_CLEAN
 
+```
+</details>
+
+
+<details><summary>PURGE</summary>
+
+```
 [gcode_macro PURGE]
 gcode:
     SAVE_GCODE_STATE NAME=PURGE_state
@@ -104,9 +140,13 @@ gcode:
         G1 E10 F500      ; extrude a little more
     {% endfor %}
     RESTORE_GCODE_STATE name=PURGE_state
+```
+</details>
 
 
+<details><summary>BEDMESHPROCEDURE</summary>
 
+``` 
 [gcode_macro BEDMESHPROCEDURE]
 gcode:
 	BED_MESH_CLEAR
@@ -114,12 +154,23 @@ gcode:
     BED_MESH_CALIBRATE
     BED_MESH_PROFILE SAVE={printer.heater_bed.target}C
     SAVE_CONFIG
+```
+</details>
 
+
+<details><summary>BEDMESHLOAD</summary>
+
+``` 
 [gcode_macro BEDMESHLOAD]
 gcode:
     
     BED_MESH_PROFILE LOAD={printer.heater_bed.target}C
-    
+```
+</details>
+
+<details><summary>TEMPADJUSTPA</summary>
+
+``` 
 [gcode_macro TEMPADJUSTPA]
 gcode:
     #ABS
@@ -137,7 +188,12 @@ gcode:
     {% if printer.heater_bed.target <= 60 %}
         SET_PRESSURE_ADVANCE ADVANCE=0.0
     {% endif %}
-        
+```
+</details>
+
+<details><summary>TEMPADJUSTOFFSET</summary>
+
+``` 
 [gcode_macro TEMPADJUSTOFFSET]
 gcode:
     #ABS
@@ -155,12 +211,21 @@ gcode:
         SET_GCODE_OFFSET Z=0 MOVE=1
         SET_GCODE_OFFSET Z_ADJUST=0.02 MOVE=1
     {% endif %}
-    
+```
+</details>   
+
+<details><summary>ZTA</summary>
+
+``` 
 [gcode_macro ZTA]
 gcode:
     Z_TILT_ADJUST
-    
+```
+</details>
 
+<details><summary>CANCEL_PRINT</summary>
+
+``` 
 [gcode_macro CANCEL_PRINT]
 rename_existing: BASE_CANCEL_PRINT
 gcode:
@@ -174,7 +239,14 @@ gcode:
     M106 S0
     PRINT_END
     RESET_TOOLCHANGER
+```
+</details>
 
+<details><summary>M600</summary>
+
+```	
 [gcode_macro M600]
     gcode:
      PAUSE
+```
+</details>
