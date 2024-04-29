@@ -367,3 +367,85 @@ gcode:
 
 </details>
   
+#### MACHINE INITIALISATION
+
+<details><summary>_INITIALIZE_ALL_TOOLS</summary>
+
+```
+[gcode_macro _INITIALIZE_ALL_TOOLS]
+gcode:
+  {% set allTools = printer["gcode_macro VARIABLES_LIST"].tools %}
+
+        #TOOL LEDS INITIALIZATION
+   {% for tool in allTools %}
+         SET_STATUS_LED_NOT_IN_USE T={tool}
+   {% endfor %}
+```
+
+</details>
+
+
+#### FILAMENT SENSOR INITIALIZATION (seems empty)
+
+
+#### HALL EFFECT SENSOR INITIALIZATION
+
+<details><summary>RESET_DELAY_AND_CHECK_MACHINE_STATUS</summary>
+
+```
+[gcode_macro RESET_DELAY_AND_CHECK_MACHINE_STATUS]
+gcode:
+        {% if printer.idle_timeout.state != "Printing" %}
+                #M118 "RESET_DELAY_AND_CHECK_MACHINE_STATUS"
+                UPDATE_DELAYED_GCODE ID=_DELAYED_CHECK_MACHINE_STATE_QUICK DURATION=0
+                UPDATE_DELAYED_GCODE ID=_DELAYED_CHECK_MACHINE_STATE_QUICK DURATION=3
+        {% endif %}
+```
+
+</details>
+
+
+<details><summary>VERIFY_TOOLCHANGE_DURING_PRINT</summary>
+
+```
+[gcode_macro VERIFY_TOOLCHANGE_DURING_PRINT]
+        gcode:
+                #M118 "VERIFY_TOOLCHANGE_DURING_PRINT in {params.DURATION} seconds with printer state: {printer.idle_timeout.state} FORCE: {params.FORCE}"
+                {% if printer.idle_timeout.state == "Printing" or params.FORCE|int == 1 %}
+                        #M118 "EXECUTING VERIFY_TOOLCHANGE_DURING_PRINT in {params.DURATION} seconds"
+                        UPDATE_DELAYED_GCODE ID=_DELAYED_CHECK_MACHINE_STATE_QUICK DURATION=0
+                        UPDATE_DELAYED_GCODE ID=_DELAYED_CHECK_MACHINE_STATE_QUICK DURATION={params.DURATION}
+                {% endif %}
+```
+
+</details>
+
+
+<details><summary>_DELAYED_CHECK_MACHINE_STATE_QUICK</summary>
+
+```
+[delayed_gcode _DELAYED_CHECK_MACHINE_STATE_QUICK]
+initial_duration: 0
+gcode:
+        #M118 "Evaluating Machine State"
+        _EVALUATE_MACHINE_STATE_QUICK
+        {% if printer.idle_timeout.state == "Printing" %}
+                VERIFY_TOOLCHANGE_DURING_PRINT DURATION=5 FORCE=0
+        {% endif %}
+```
+
+</details>
+
+<details><summary>RESET_TOOLCHANGER</summary>
+
+```
+[gcode_macro RESET_TOOLCHANGER]
+gcode:
+        RESET_PRINT_STATUS
+        RESET_TOOLS_FOR_PRINT
+        _INITIALIZE_ALL_TOOLS
+        _EVALUATE_MACHINE_STATE
+
+```
+</details>
+
