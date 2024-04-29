@@ -1,9 +1,3 @@
-html
-<style>
-  .indented-text {
-    padding-left: 20px;
-  }
-</style>
 
 <h2>Gcode files relevant to the Dakash toolchanger system</h2>
 
