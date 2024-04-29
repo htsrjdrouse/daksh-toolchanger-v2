@@ -1,6 +1,6 @@
 # daksh toolchanger docs
 
-This configuration is for just 2 tools and there is just 1 detachable z sensor probe. 
+This configuration is for just 2 tools and there is just 1 detachable z sensor probe. Process data is stored in variables.cfg which is not documented
 
 ## printer.cfg calls toolchanger.cfg that contains the toolchanger action
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/printer_docs.md
