@@ -316,4 +316,18 @@ gcode:
 ```
 
 </details>
+
+<details><summary>SET_TOOL_FOR_PRINT</summary>
+
+```
+[gcode_macro SET_TOOL_FOR_PRINT]
+gcode:
+        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=t{params.T}_used_in_print VALUE=1
+        {% if params.R is defined and params.S is defined%}
+                M568 P{params.T} R{params.R} S{params.S} A0
+        {% endif %}
+```
+  
+</details>
+
   
