@@ -15,7 +15,7 @@ Dock 0 - tests fine
 
 <img width="385" alt="dock2_test" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/140b3a0c-c698-452e-826b-00cff503a48f">
 
-Dock 1 - there is something wrong with the wiring (or sensor) for this one. 
+Dock 1 - there is something wrong with the wiring (or sensor) for this one. In my case didn't use the correct pin. 
 
 
 
