@@ -1,6 +1,7 @@
+# Set up procedure #
 
 
-*** After installation and modifying the configuration to work with 2 tools instead of 5 initially, here are the operational steps to get the system running: ***
+## After installation and modifying the configuration to work with 2 tools instead of 5 initially, here are the operational steps to get the system running: ##
 
 1. Run DOCK_TEST to get the system to find the docks, you may get an error like this:
 
@@ -9,9 +10,11 @@
 If this is the case, then you need to test the ATC switch buttons which are the hall sensors that detect the docks. In this case, we need to check both docks (dock0 - QUERY_ATCSWITCH BUTTON=tc0) (dock1 - QUERY_ATCSWITCH BUTTON=tc1). 
 
 <img width="385" alt="dock1_test" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/de97417c-1f99-48fb-8896-21f02463b0e6">
+
 Dock 0 - tests fine
 
 <img width="385" alt="dock2_test" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/140b3a0c-c698-452e-826b-00cff503a48f">
+
 Dock 1 - there is something wrong with the wiring (or sensor) for this one. 
 
 
