@@ -4,4 +4,4 @@
 
 1. Run DOCK_TEST to get the system to find the docks, you may get an error like this:
 
-   
+![Alt Text](doc/image-file.png)
