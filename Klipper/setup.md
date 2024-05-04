@@ -18,4 +18,7 @@ Dock 0 - tests fine
 Dock 1 - there is something wrong with the wiring (or sensor) for this one. In my case didn't use the correct pin. 
 
 
+The hall sensors used are A3144
+
+<img width="386" alt="A3144_hallsensor" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/dea759ff-79a5-4a85-870d-5c8c5ebb8734">
 
