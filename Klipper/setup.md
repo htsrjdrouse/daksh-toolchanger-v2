@@ -26,3 +26,9 @@ The hall sensors used are A3144
 
 <img width="386" alt="A3144_hallsensor" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/dea759ff-79a5-4a85-870d-5c8c5ebb8734">
 
+
+<img width="561" alt="a3144_hallsensor_tentative_circuit" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/b7ad3f02-ff90-433c-96ec-bd9e69c72019">
+
+This diagram froms from here:https://forum.arduino.cc/t/a3144-hall-effect-sensor-problems/251717/12. There is another diagram that I could try if this doesn't work posted at: https://forum.arduino.cc/t/a3144-hall-effect-sensor-decoupling-question/389784 
+
+
