@@ -1,5 +1,9 @@
 # Set up procedure #
 
+### Before, proceeding, you may see a problem like with the klipper_toolchanger repo being 'dirty'. That's a good thing. 
+
+<img width="711" alt="dirty_repo" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/378d0a99-3bc3-437a-b78e-91e90d656a85">
+
 
 ### After installation and modifying the configuration to work with 2 tools instead of 5 initially, here are the operational steps to get the system running: ###
 
