@@ -22,7 +22,7 @@ Dock 0 - tests fine
 Dock 1 - there is something wrong with the wiring (or sensor) for this one. In my case didn't use the correct pin. 
 
 
-The hall sensors used are A3144
+The A3144 unipolar hall sensors which are widely available from Amazon and cheap in the US, whereas bipolar sensors are less common (A1104 and A1105) 
 
 <img width="386" alt="A3144_hallsensor" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/dea759ff-79a5-4a85-870d-5c8c5ebb8734">
 
@@ -31,4 +31,9 @@ The hall sensors used are A3144
 
 This diagram froms from here:https://forum.arduino.cc/t/a3144-hall-effect-sensor-problems/251717/12. There is another diagram that I could try if this doesn't work posted at: https://forum.arduino.cc/t/a3144-hall-effect-sensor-decoupling-question/389784 
 
+So one of my docks the magnet is in the right direction whereas the other its in the wrong one, unless you get a bipolar hall sensor you got to check this. 
+
+<img width="537" alt="dock_magnet_wrong_way" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/f8642bf9-b958-4ebd-8c36-357e879be398">
+
+<img width="537" alt="dock_magnet_is_right_way" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/d58a491a-3e03-409e-8cb5-343947695621">
 
