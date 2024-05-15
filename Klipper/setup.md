@@ -21,19 +21,21 @@ Dock 0 - tests fine
 
 Dock 1 - there is something wrong with the wiring (or sensor) for this one. In my case didn't use the correct pin. 
 
+After toiling with the hall sensors, I ended up switching to mechanical endstops which was much more straightforward to wire up. I also added LEDs to both tools which are used to signal tool locking and errors when using the software.  
 
-The A3144 unipolar hall sensors which are widely available from Amazon and cheap in the US, whereas bipolar sensors are less common (A1104 and A1105) 
+<img width="833" alt="single_tool_docked" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/aa28ba0f-9668-490b-b8ea-f43f136705b5">
 
-<img width="386" alt="A3144_hallsensor" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/dea759ff-79a5-4a85-870d-5c8c5ebb8734">
+When restarting the system with these tools, I get this displayed on my console. 
+
+<img width="843" alt="console_when_sensors_working" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/bf6611f0-5078-4f2c-abbd-f2bf0762822d">
+
+Since both tools (extruders) are active, I presume I have the nomenclature mixed up (TC - tool coupling and TD - tool dock) so I swapped them and restarted again. This time I got:
+
+<img width="818" alt="console_when_tc_td_straight" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/f4edf660-5917-46c0-b277-dddc74b4f45e">
 
 
-<img width="561" alt="a3144_hallsensor_tentative_circuit" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/b7ad3f02-ff90-433c-96ec-bd9e69c72019">
+Now you can test the switches again:
 
-This diagram froms from here:https://forum.arduino.cc/t/a3144-hall-effect-sensor-problems/251717/12. There is another diagram that I could try if this doesn't work posted at: https://forum.arduino.cc/t/a3144-hall-effect-sensor-decoupling-question/389784 
 
-So one of my docks the magnet is in the right direction whereas the other its in the wrong one, unless you get a bipolar hall sensor you got to check this. 
-
-<img width="537" alt="dock_magnet_wrong_way" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/f8642bf9-b958-4ebd-8c36-357e879be398">
-
-<img width="537" alt="dock_magnet_is_right_way" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/d58a491a-3e03-409e-8cb5-343947695621">
+<img width="423" alt="sensor_test_working" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/ee79ce59-9133-4dc0-b405-08125a0923c8">
 
