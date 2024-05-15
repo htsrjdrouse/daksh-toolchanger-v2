@@ -37,5 +37,25 @@ And the LEDs are off for both tools:
 
 <img width="808" alt="both_tool_leds_off" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/14766c3e-0063-4203-b0c9-e92f3b88d92f">
 
+But then when I run DOCK_TEST, I get the following error:
+
+<img width="1230" alt="dock_test_error1" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/984ed3f5-35f9-4069-a875-ac226186ed6e">
+
+So then maybe the TC and TD needs to be switched (does TC mean tool coupling and TD mean tool dock?), when doing this, I get these displayed on the console when restarting:
+
+<img width="818" alt="console_when_tc_td_straight" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/b173fc67-f3f6-4d58-9f63-ef3da1b286b5">
+
+Then testing the switches shows:
+
+<img width="423" alt="sensor_test_working" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/89826b7d-b939-4dc2-8606-b5d9a6bad4dd">
+
+And in this case, the LEDs are both on:
+
+<img width="969" alt="both_tool_leds_on" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/ab1f434c-be3e-49c1-9f4c-fd919c71540a">
+
+But then when I run DOCK_TEST, I get the following error:
+
+<img width="1091" alt="dock_test_error2" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/d94ca414-4973-421b-b87e-c34784a0bf80">
+
 
 
