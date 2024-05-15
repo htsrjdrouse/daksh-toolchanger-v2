@@ -29,7 +29,7 @@ When restarting the system with these tools, I get this displayed on my console.
 
 <img width="843" alt="console_when_sensors_working" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/bf6611f0-5078-4f2c-abbd-f2bf0762822d">
 
-Since both tools (extruders) are active, I presume I have the nomenclature mixed up (TC - tool coupling and TD - tool dock) so I swapped them and restarted again. This time I got:
+Since both tools (extruders) are active, I presume I have the nomenclature mixed up (TC - tool coupling and TD - tool dock, but not sure) so I swapped them and restarted again. This time I got:
 
 <img width="818" alt="console_when_tc_td_straight" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/f4edf660-5917-46c0-b277-dddc74b4f45e">
 
@@ -38,4 +38,11 @@ Now you can test the switches again:
 
 
 <img width="423" alt="sensor_test_working" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/ee79ce59-9133-4dc0-b405-08125a0923c8">
+
+And the LEDs are on for both tools:
+
+<img width="969" alt="both_tool_leds_on" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/def05d7e-c76c-4891-b4d1-b531a5032ed1">
+
+
+
 
