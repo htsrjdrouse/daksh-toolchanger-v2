@@ -53,9 +53,7 @@ And in this case, the LEDs are both on:
 
 <img width="969" alt="both_tool_leds_on" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/ab1f434c-be3e-49c1-9f4c-fd919c71540a">
 
-But then when I run DOCK_TEST, I get the following error:
 
-<img width="1091" alt="dock_test_error2" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/d94ca414-4973-421b-b87e-c34784a0bf80">
 
 
 
