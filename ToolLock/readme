@@ -1,3 +1,0 @@
-I couldn't get the locking to work with two mgn12's (because it required too much force) so I just use the top one and the bottom is just filled, nomgn12_bottom_spacer.stl
-
-The spring BOM is a bit tricky because if you can't get the same one so the locking was modified to work with the 12mm springs that you get from Amazon. 304 Stainless Steel,6mm OD,0.6mm Wire Size,15mm Free Length. This affects the MGN12 too since the hole for screwing it into place and the dowel pin hole spacing is different so I had to 3D print this rather then actually using MGN12. 
