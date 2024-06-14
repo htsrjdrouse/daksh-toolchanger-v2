@@ -8,6 +8,8 @@ And in this case, the LEDs are both on:
 
 <img width="969" alt="both_tool_leds_on" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/ab1f434c-be3e-49c1-9f4c-fd919c71540a">
 
+
+
 Then just run, CALC_DOCK_LOCATION tool=0 and CALC_DOCK_LOCATION tool=1, with the pins inside the dock (leave as is). It works with needing to remove the. Rather then using DOCK_TEST, you can run some gcode like this:
 
 <code>
