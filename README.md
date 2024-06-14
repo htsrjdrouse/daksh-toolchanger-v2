@@ -1,3 +1,5 @@
+<b>Daksh modifications</b>
+
 This version has a few modifications which were made in order to get it to work. The CAD design was modified using OpenScad and the code is included. Here is a list of various modifications:
 
 1. Dock is modified so that it is rigid and accomodates the guide pins that adhere to the 2 in 1 rule of linear motion. The extruder assembly has been modified as well to match.
