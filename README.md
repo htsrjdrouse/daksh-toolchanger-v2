@@ -2,7 +2,7 @@
 
 This version has a few modifications which were made in order to get it to work. The CAD design was modified using OpenScad and the code is included. Here is a list of various modifications:
 
-1. Dock is modified so that it is rigid and accomodates the guide pins that adhere to the 2 in 1 rule of linear motion. The extruder assembly has been modified as well to match. There are more magnets to better secure the docking. 
+1. Dock is modified so that it is rigid and accomodates the guide pins that adhere to the 2 in 1 rule for linear motion. The extruder assembly has been modified as well to match. There are more magnets to better secure the docking. 
 2. Most (almost all) heat inserts have been replaced with self tapping holes.
 3. Hall sensors have been replaced using mechanical endstops. This simplifies the wiring. 
 4. The extruder has been redesigned to work with Bambu Labs hotend.
