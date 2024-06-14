@@ -7,5 +7,6 @@ This version has a few modifications which were made in order to get it to work.
 5. The z probe feature inside the extruder has been removed.
 6. The maxwell coupling acorn nuts and mgn12 rails are 3-D printed.
 
+
+[![ToolChanger example](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=bsXgGvNo5a8)
    
-https://youtu.be/bsXgGvNo5a8
