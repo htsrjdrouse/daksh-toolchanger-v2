@@ -9,6 +9,16 @@ The recipe for setting up the firmware for both the BTT EBB36 and EBB42 CAN devi
 
 <img width="533" alt="btt_u2c_brd" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/da9ebf1d-1675-4c39-acd4-f40f27085fa5">
 
+A good DIN mount is posted here: https://github.com/VoronDesign/VoronUsers/tree/main/printer_mods/Electroleon/U2C_Mounting. 
+
+After connecting the U2C board to the raspberry pi using, usb-c, type lsusb to see if it is being recognized. 
+
+
+<img width="588" alt="lsusb_sees_u2c_brd" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/52d6ed81-37aa-450e-a8b0-3e141a2613ca">
+
+If its working then you need to create a can0 file like so:
+<code> sudo nano /etc/network/interfaces.d/can0 </code>
+
 
 
 
