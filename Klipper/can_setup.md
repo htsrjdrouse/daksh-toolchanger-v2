@@ -17,8 +17,14 @@ After connecting the U2C board to the raspberry pi using, usb-c, type lsusb to s
 <img width="588" alt="lsusb_sees_u2c_brd" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/52d6ed81-37aa-450e-a8b0-3e141a2613ca">
 
 If its working then you need to create a can0 file like so:
-<code> sudo nano /etc/network/interfaces.d/can0 </code>
+``` sudo nano /etc/network/interfaces.d/can0 ```
 
+Then add this into the file:
 
-
+```
+allow-hotplug can0
+  iface can0 can static
+  bitrate 500000
+  up ip link set can0 txqueuelen 1024
+```
 
