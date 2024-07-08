@@ -11,7 +11,7 @@ The recipe for setting up the firmware for both the BTT EBB36 and EBB42 CAN devi
 
 A good DIN mount is posted here: https://github.com/VoronDesign/VoronUsers/tree/main/printer_mods/Electroleon/U2C_Mounting. 
 
-After connecting the U2C board to the raspberry pi using, usb-c, type lsusb to see if it is being recognized. 
+After connecting the U2C board to the Raspberry Pi using, usb-c, type lsusb to see if it is being recognized. 
 
 
 <img width="588" alt="lsusb_sees_u2c_brd" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/52d6ed81-37aa-450e-a8b0-3e141a2613ca">
@@ -27,4 +27,8 @@ allow-hotplug can0
   bitrate 500000
   up ip link set can0 txqueuelen 1024
 ```
+
+Then reboot the Pi, and check if it is working using ```ifconfig can0```, you should see something like this:
+
+<img width="623" alt="ifconfig_can0_resp" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/951500f7-a78d-4f62-962a-91bad47a1557">
 
