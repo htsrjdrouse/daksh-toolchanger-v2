@@ -87,7 +87,8 @@ Now connect the EBB board via CAN, and verify its being recognized by typing ```
 After you are able to detect, now you need to build Klipper. 
 
 ```cd ~/klipper
-make menuconfig```
+make menuconfig
+```
 
 <img width="681" alt="ebb_klipper" src="https://github.com/htsrjdrouse/daksh-toolchanger-v2/assets/1452651/3262c56d-58c9-4211-b8a0-2d447e7c9657">
 
