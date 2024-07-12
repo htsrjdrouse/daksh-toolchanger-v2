@@ -1,3 +1,0 @@
-The load_eject.calibrate.py script generates gcode that can be used to load and eject tools. It is a simple script that verifies the accurate xy position for each tool. 
-
-Probably will be deprecated after the toolchanging code is working
