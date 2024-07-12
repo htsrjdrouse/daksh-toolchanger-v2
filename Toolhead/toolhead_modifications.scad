@@ -3,6 +3,11 @@ include<../ToolLock/printable_lm3uu.scad>
 
 //include<../Dock/Dock_main.scad>
 
+//import("toolhead-top-1.stl");
+import("toolhead_top_1_fix_nom3fittings_endstop.stl");
+
+//translate([30,-3.5,52])color("pink")detachable_probe();
+//translate([49,-3.5,52+3.5-16.5])rotate([-90,0,0])endstop_mod();
 
 /*
 import("../ToolLock/lock-body-top-mod.stl");
@@ -25,6 +30,7 @@ translate([0,0,-2])m5nut();
 
 //translate([59.8,-0.15,0])toolheadtop2_fixed_nom3fittings_endstop();
 
+/*
 
 
 //translate([0,0,2])import("../ToolLock/MGN12_Linear_Guide_8mmlonger_minus3.5.stl");
@@ -34,7 +40,6 @@ translate([0,0,-2])m5nut();
 
 
 
-/*
 //import("toolhead_top_1_fix_mgn12_flushmodel.stl");
 //#color("pink")import("../ToolLock/MGN12_Linear_Guide_8mmlonger_minus3.5.stl");
 //color("pink")translate([59.8,-0.15,0])toolhead_top_2_fixed_endstop();
@@ -44,11 +49,11 @@ import("toolhead_top_1_fix_nom3fittings_endstop.stl");
 import("toolhead_bottom_fix_improved.stl");
 translate([35-1.56+0.3,-10,147.96])rotate([-90,0,0])color("silver")cylinder(r=4.0/2,h=12,$fn=300);
 translate([35-1.56+0.3,-10,60.96])rotate([-90,0,0])color("silver")cylinder(r=4.0/2,h=12,$fn=300);
-
-translate([60,0+5,-2+2.5])color("pink")import("../Dock/Dock_main_exp_2in1.stl");
-
-
 */
+
+//translate([60,0+5,-2+2.5])color("pink")import("../Dock/Dock_main_exp_2in1.stl");
+
+
 //translate([60,0,-2])color("pink")import("../Dock/Dock_main_endstop_m4_m4selftap.stl");
 
 
@@ -188,18 +193,25 @@ translate([0,0,-5]){
 
 
 module detachable_probe(){
+//endstop_mod();
 difference(){
 union(){
+translate([24,5,2])rotate([90,0,0])cylinder(r=13,h=3,$fn=300);
 translate([0,0,-3])cube([15,5,25]);
-translate([0,0,-3])cube([50,5,15]);
-translate([0,-2,-3])cube([50,5,2.4]);
+translate([0,0,-3])cube([35,5,18]);
+translate([33,0,-3])cube([15,5,18]);
+translate([15,0,-3-16.6+7.5])cube([50-15-15,5,12]);
+translate([0,-2,-3])cube([50-15+13,5,2.4]);
+translate([1.5+2.35-0.065,0-2+15-10,16.65-7.7])rotate([90,0,0])cylinder(r=3.9/2,h=7,$fn=300);
 }
-translate([19,0+1.9,-3])#cube([13,6.5,6+9,]);
-translate([1.5+2.35-0.065,0-2+15,16.65-7.7])rotate([90,0,0])#cylinder(r=4.2/2,h=30,$fn=300);
+//translate([19-0.5,0+1.9+3,-3-17])#cube([13+1,6.5,6+9+15]);
+
+translate([1.5+2.35+18.3,0-2+30,16.65-18.3-8.5])rotate([90,0,0])#cylinder(r=1.8/2,h=134.15,$fn=300);
+translate([1.5+2.35+18.3+6.5,0-2+30,16.65-18.3-8.5])rotate([90,0,0])#cylinder(r=1.8/2,h=134.15,$fn=300);
 
 translate([0,5.1,0]){
-translate([1.5+2.35,0-2,16.65])rotate([90,0,0])#cylinder(r=6.1/2,h=3.15,$fn=300);
-translate([1.5+2.35+38.5,0-2,16.65-8.8])rotate([90,0,0])#cylinder(r=6.1/2,h=3.15,$fn=300);
+translate([1.5+2.35,0-2,16.65])rotate([90,0,0])cylinder(r=6.25/2,h=3.15,$fn=300);
+translate([1.5+2.35+38.5,0-2,16.65-8.8])rotate([90,0,0])cylinder(r=6.25/2,h=3.15,$fn=300);
 }
 }
 }
