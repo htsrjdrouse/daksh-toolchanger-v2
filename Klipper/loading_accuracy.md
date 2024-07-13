@@ -43,7 +43,7 @@ tool_lock_gcode:
 tool_unlock_gcode:
   SAVE_GCODE_STATE NAME=tool_lock_state                                           # Save gcode state
    G91 
-   G1 X12 F{printer.save_variables.variables['ktcc_dock_move_speed']|int}
+   G1 X14 F{printer.save_variables.variables['ktcc_dock_move_speed']|int}
    M400
   RESTORE_GCODE_STATE NAME=tool_lock_state MOVE=0                                 # Restore gcode state
 ```
