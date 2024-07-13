@@ -76,7 +76,7 @@ This is a bit high and so there probably needs to be more tension in the springs
 <img width="452" alt="toollock_loose" src="https://github.com/user-attachments/assets/fe104ca7-342a-4b67-b36e-456d99e02096">
 
 So the springs were tightened and the test was rerun. 
-
+```
 read1 = "Tool offset is -0.017188,-0.260938,0.001875"
 read2 = "Tool offset is -0.020313,-0.229688,0.011250"
 read3 = "Tool offset is -0.020313,1.320312,0.001875"
@@ -84,7 +84,7 @@ read4 = "Tool offset is 0.014062,-0.284375,0.003750"
 read5 = "Tool offset is -0.001563,-0.264063,0.005000"
 read6 = "Tool offset is -0.003125,-0.251563,0.006250"
 read7 = "Tool offset is -0.004688,-0.262500,0.014375"
-
+```
 For the x my average is -0.007589714 and %CV is 153.44%
 For the y my average is -0.033259286 and the %CV = 1661.76%
 For the z my average is 0.006339286 and the %CV = 69.82%
