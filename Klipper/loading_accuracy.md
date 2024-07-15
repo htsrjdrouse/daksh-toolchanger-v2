@@ -60,12 +60,15 @@ ktcc_speed3 = 2000
 
 I ran the NUDGE_FIND_TOOL_OFFSETS to get the offset measurements after here are the readings:
 
+```
 read1 = "Tool offset is 0.481250,-0.368750,-0.000000"
 read2 = "Tool offset is 0.485937,-0.254688,0.022500"
 read3 = "Tool offset is 0.492187,-0.260938,0.007500" 
 read4 = "Tool offset is 0.490625,-0.348438,-0.009375"
 read5 = "Tool offset is 0.460937,-0.253125,0.034375"
 read6 = "Tool offset is 0.448437,-0.340625,0.010625"
+```
+
 
 For the x my average is 0.4765621666666666 and %CV is 3.41%
 For the y my average is -0.3044273333333333 and %CV is 16.08%
