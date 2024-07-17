@@ -1,0 +1,9 @@
+difference(){
+union(){
+import("spool_holder_82mm.stl");
+translate([4,5,17.5-44.5/2+4])#cube([12,10,12]);
+translate([4-5,5,17.5-44.5/2+4+3.1])#cube([12,8,5.8]);
+}
+translate([-5,0,17.5])#cube([30,40,20]);
+translate([-5,0,17.5-44.5])#cube([30,40,20]);
+}
