@@ -3,8 +3,13 @@ include<../ToolLock/printable_lm3uu.scad>
 
 //include<../Dock/Dock_main.scad>
 
+
+//bambulab_extruder();
+//translate([49,-35+3.8,70+12-0.05])rotate([0,0,0])bambulab_hotend();
+
+
 //import("toolhead-top-1.stl");
-import("toolhead_top_1_fix_nom3fittings_endstop.stl");
+//import("toolhead_top_1_fix_nom3fittings_endstop.stl");
 
 //translate([30,-3.5,52])color("pink")detachable_probe();
 //translate([49,-3.5,52+3.5-16.5])rotate([-90,0,0])endstop_mod();
@@ -242,7 +247,7 @@ translate([47.5-0.21+26-50+35.19-8,-12.2-0.2-26.558/2-1.6-2.1,100-5+0.64+53.15])
 //toolhead_top_2_fix();
 //color("pink")import("toolhead-top-2.stl");
 //import("toolhead-top-2-v1.stl");
-//bambulab_extruder();
+bambulab_extruder();
 //bambulab_hotend();
 
 module bambulab_extruder(){
@@ -250,12 +255,12 @@ difference(){
 union(){
 hotend_mount_mod();
 translate([49,-35+3.8,70+12]){
+translate([7.4/2+0.2-5.7,11/2-5.6-3,0])cube([25,17,12]);
 translate([7.4/2+0.2-5.7,11/2-5.6,0])cylinder(r=5/2,h=23.45,$fn=300);
 translate([7.4/2+0.2-5.7,11/2+5.6,0])cylinder(r=5/2,h=23.45,$fn=300);
 translate([7.4/2+0.2+5.7,11/2-5.6,0])cylinder(r=5/2,h=23.45,$fn=300);
 translate([7.4/2+0.2+5.7,11/2+5.6,0])cylinder(r=5/2,h=23.45,$fn=300);
 }
-
 }
 translate([49,-35+3.8,70+12-0.05])rotate([0,0,0])bambulab_hotend();
 translate([49,-35+3.8,70+12]){
@@ -265,12 +270,17 @@ translate([-7.4/2-20,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=6/2,h=25,$fn=300);
 }
 translate([-7.4/2-20,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=3.3/2,h=25,$fn=300);
 translate([-7.4/2-20,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=3.3/2,h=25,$fn=300);
-translate([-7.4/2-20+25,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=2.8/2,h=25,$fn=300);
-translate([-7.4/2-20+25,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=2.8/2,h=25,$fn=300);
+translate([-7.4/2-20+25,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=3.2/2,h=25,$fn=300);
+translate([-7.4/2-20+25,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=3.2/2,h=25,$fn=300);
+
+#translate([-7.4/2-20+25+11,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=6.55/2,h=4,$fn=6);
+#translate([-7.4/2-20+25+11,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=6.55/2,h=4,$fn=6);
+
+
 translate([7.4/2+0.2,11/2,-2])cylinder(r=3.1/2,h=70,$fn=300);
 }
 
-translate([61.2,-35,60])#cube([20,20,60]);
+translate([61.2+3,-35,60])cube([20,20,60]);
 
 }
 }
