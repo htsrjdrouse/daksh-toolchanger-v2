@@ -91,7 +91,9 @@ read7 = "Tool offset is 1.098437,-0.303125,0.046250"
 ```
 
 For the x my average is 1.282812142857143 and %CV is 8.8%
+
 For the y my average is -0.1975448571428571 and %CV is -117.18%
+
 For the z my average is 0.04437 and %CV is 19.001%
 
 
