@@ -81,19 +81,15 @@ This is a bit high and so there probably needs to be more tension in the springs
 So the springs were tightened and the test was rerun. 
 
 ```
-read1 = "Tool offset is 1.439062,-0.268750,0.036250"
-read2 = "Tool offset is 1.360937,-0.276563,0.060000"
-read3 = "Tool offset is 1.314062,-0.279688,0.043750"
-read4 = "Tool offset is 1.246875,-0.278125,0.046250"
-read5 = "Tool offset is 1.326562,-0.303125,0.038750"
-read6 = "Tool offset is 1.193750,0.326562,0.041250"
-read7 = "Tool offset is 1.098437,-0.303125,0.046250"
+read1 = "Tool offset is -1.470312,-0.817187,0.258750"
+read2 = "Tool offset is -1.468750,-0.803125,0.263750"
+read3 = "Tool offset is -1.471875,-0.810937,0.185000"
 ```
 
-For the x my average is 1.282812142857143 and %CV is 8.8%
+For the x my average is -1.470312 and %CV is 0.1062%
 
-For the y my average is -0.1975448571428571 and %CV is -117.18%
+For the y my average is -0.81041 and %CV is 0.8699%
 
-For the z my average is 0.04437 and %CV is 19.001%
+For the z my average is 0.23583 and %CV is 18.7035%
 
 
