@@ -8,7 +8,8 @@ This version has a few modifications which were made in order to get it to work.
 4. The extruder has been redesigned to work with Bambu Labs hotend.
 5. The z probe feature inside the extruder has been removed.
 6. The maxwell coupling acorn nuts and mgn12 rails are 3-D printed.
-7. The top rear extruder plate that secures the stepper motor has been redesigned that allows for better wiring organization. 
+7. The top rear extruder plate that secures the stepper motor has been redesigned that allows for better wiring organization.
+8. Adjustable ooze wipes and adapted voron style spool holders
 
 
 
