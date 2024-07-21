@@ -273,14 +273,14 @@ translate([-7.4/2-20,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=3.3/2,h=25,$fn=300
 translate([-7.4/2-20+25,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=3.2/2,h=25,$fn=300);
 translate([-7.4/2-20+25,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=3.2/2,h=25,$fn=300);
 
-#translate([-7.4/2-20+25+11,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=6.55/2,h=4,$fn=6);
-#translate([-7.4/2-20+25+11,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=6.55/2,h=4,$fn=6);
+#translate([-7.4/2-20+25+11-1,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=6.45/2,h=4,$fn=6);
+#translate([-7.4/2-20+25+11-1,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=6.45/2,h=4,$fn=6);
 
 
 translate([7.4/2+0.2,11/2,-2])cylinder(r=3.1/2,h=70,$fn=300);
 }
 
-translate([61.2+3,-35,60])cube([20,20,60]);
+#translate([61.2+3-0.5,-35,60])cube([20,20,60]);
 
 }
 }
