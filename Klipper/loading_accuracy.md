@@ -93,3 +93,10 @@ For the y my average is -0.81041 and %CV is 0.8699%
 For the z my average is 0.23583 and %CV is 18.7035%
 
 
+The nudge tool works well if you use copper screws and if you want to know how accurate the loading and unloading is. However, when printing with these recommended offsets, this is wrong.
+
+<img width="487" alt="nudge_recommended_offsets" src="https://github.com/user-attachments/assets/556da92f-a465-49a8-af59-521363d75e6d">
+
+I ended up having to print a calibration tower to figure out the offsets. For this tower, I ended up having the following offsets, t1_offset = (-3.2, -0.81041, 0.23583). So its just the x offset where there is big changes. But the y offset also needs to be adjusted slightly which I still need to do. I think the y offset probably needs to be adjust to -0.61 (200 microns less) 
+
+
