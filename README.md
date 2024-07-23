@@ -12,4 +12,5 @@ This version has a few modifications which were made in order to get it to work.
 8. Adjustable ooze wipes and adapted voron style spool holders
 
 
-[HTS Resources ToolChanger]([https://photos.app.goo.gl/Pi7gVnhTA2cq7W6o6](https://youtu.be/mFz-xJRdldU))
+
+[![HTS Resources ToolChanger](https://img.youtube.com/vi/mFz-xJRdldU/0.jpg)](https://www.youtube.com/watch?v=mFz-xJRdldU)
