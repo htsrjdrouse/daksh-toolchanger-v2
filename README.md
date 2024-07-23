@@ -14,3 +14,6 @@ This version has a few modifications which were made in order to get it to work.
 
 
 [![HTS Resources ToolChanger](https://img.youtube.com/vi/mFz-xJRdldU/0.jpg)](https://www.youtube.com/watch?v=mFz-xJRdldU)
+
+
+[![HTS Resources](https://img.youtube.com/vi/mFz-xJRdldU/0.jpg)](https://www.youtube.com/watch?v=mFz-xJRdldU)
