@@ -1,6 +1,17 @@
 
 ### crash_detection.cfg - INTELLIGENT ERROR DETECTION
 
+This works when called by toolchanger.cfg. This is called in different locations:
+
+1. [gcode_macro SUB_TOOL_PICKUP_END] calls  VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0
+   
+  DURATION=30: This sets the verification duration to 30 seconds. During this time, Klipper will monitor the tool change process to ensure it completes successfully.
+
+  FORCE=0: This parameter controls the behavior if the tool change verification fails. A value of 0 means that if the verification fails, the print will pause and wait for manual intervention to resume. If FORCE were set to 1, the print would abort instead of pausing.
+
+
+
+
 <details>
 <summary>VARIABLES_LIST</summary>
   
