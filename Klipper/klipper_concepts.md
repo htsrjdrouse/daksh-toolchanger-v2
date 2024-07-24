@@ -53,3 +53,7 @@ toolchanger.cfg:  SAVE_GCODE_STATE NAME=tool_lock_state                         
 toolchanger.cfg:  SAVE_GCODE_STATE NAME=TOOL_PICKUP                                    # Save GCODE state. Will be restored at the end of SUB_TOOL_PICKUP_END
 toolchanger.cfg:  SAVE_GCODE_STATE NAME=TOOL_DROPOFF_002                        # Save GCode state. 
 ```
+
+LOAD_GCODE_STATE is not used in this software. 
+
+
