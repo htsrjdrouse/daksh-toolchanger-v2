@@ -57,3 +57,22 @@ toolchanger.cfg:  SAVE_GCODE_STATE NAME=TOOL_DROPOFF_002                        
 LOAD_GCODE_STATE is not used in this software. 
 
 
+## DURATION ##
+
+
+In Klipper, when DURATION is specified in a command like VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0, it defines the verification window during which Klipper monitors the tool change process.
+Here's how it works:
+
+When the VERIFY_TOOLCHANGE_DURING_PRINT command is executed, Klipper starts monitoring the tool change process.
+
+The DURATION parameter (in this case, 30 seconds) specifies the time window during which Klipper will verify the tool change.
+
+The printer does not pause during this verification window. Instead, Klipper monitors the tool change process concurrently while the printer continues to move and execute G-code commands.
+
+Within the 30-second verification window, Klipper checks the tool change status (e.g., sensor readings, tool presence, etc.) to ensure the tool change is successful.
+
+If the verification fails within the 30-second window (e.g., sensors indicate an error), Klipper will pause the print and wait for manual intervention (due to FORCE=0).
+
+In summary, the DURATION parameter defines the time window during which Klipper verifies the tool change process, but it does not cause the printer to pause. The verification occurs concurrently with the print job, allowing the printer to continue moving while Klipper monitors the tool change.
+
+So if you printer is fails after loading and docking tools you may want to extend the DURATION. 
