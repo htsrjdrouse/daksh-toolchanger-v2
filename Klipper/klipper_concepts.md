@@ -26,23 +26,23 @@ SAVE_GCODE_STATE is called gcode_macros.cfg, toolchanger.cfg, klipper_toolchange
 
 ### gcode_macros.cfg ###
 
-```gcode_macros.cfg:    SAVE_GCODE_STATE NAME=PRIME_LINE_state
+gcode_macros.cfg:    SAVE_GCODE_STATE NAME=PRIME_LINE_state
 gcode_macros.cfg:    SAVE_GCODE_STATE NAME=BEFORE_CLEAN
-gcode_macros.cfg:    SAVE_GCODE_STATE NAME=PURGE_state```
+gcode_macros.cfg:    SAVE_GCODE_STATE NAME=PURGE_state
 
 ### klipper_toolchanger/M600.cfg ###
 
-```klipper_toolchanger/M600.cfg:  SAVE_GCODE_STATE NAME=M600_state```
+klipper_toolchanger/M600.cfg:  SAVE_GCODE_STATE NAME=M600_state
 
 ### klipper_toolchanger/pause_resume.cfg ###
 
-```klipper_toolchanger/pause_resume.cfg:   SAVE_GCODE_STATE NAME=PAUSE_state
-klipper_toolchanger/pause_resume.cfg:	 	SAVE_GCODE_STATE NAME=PAUSE_state```
+klipper_toolchanger/pause_resume.cfg:   SAVE_GCODE_STATE NAME=PAUSE_state
+klipper_toolchanger/pause_resume.cfg:	 	SAVE_GCODE_STATE NAME=PAUSE_state
 
 ### toolchanger.cfg ###
 
-```toolchanger.cfg:  SAVE_GCODE_STATE NAME=tool_unlock_state                                         # Save gcode state
+toolchanger.cfg:  SAVE_GCODE_STATE NAME=tool_unlock_state                                         # Save gcode state
 toolchanger.cfg:  SAVE_GCODE_STATE NAME=tool_lock_state                                           # Save gcode state
 toolchanger.cfg:  SAVE_GCODE_STATE NAME=TOOL_PICKUP                                    # Save GCODE state. Will be restored at the end of SUB_TOOL_PICKUP_END
-toolchanger.cfg:  SAVE_GCODE_STATE NAME=TOOL_DROPOFF_002                        # Save GCode state. ```
+toolchanger.cfg:  SAVE_GCODE_STATE NAME=TOOL_DROPOFF_002                        # Save GCode state. 
 
