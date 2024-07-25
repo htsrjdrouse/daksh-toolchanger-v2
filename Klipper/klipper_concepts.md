@@ -248,7 +248,7 @@ gcode:
 
 ## _EVALUATE_MACHINE_STATE ##
 
-This is the more thorough analysis of the coupling and docking sensors. The first part sets the variables data (active_tool, tc_state and tc_error_code). The second part sets the LED status color and calls the PAUSE_AND_ALERT macro. 
+This is the more thorough analysis of the coupling and docking sensors. The first part sets the variables data (active_tool, tc_state and tc_error_code). The second part sets the LED status color and calls the SET_ENCLOSURE_ERROR_START and PAUSE_AND_ALERT macros. 
 
 ```
 [gcode_macro _EVALUATE_MACHINE_STATE]
