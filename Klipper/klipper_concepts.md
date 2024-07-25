@@ -206,9 +206,45 @@ By using delayed G-code macros, you can create complex workflows and automate ta
 
 This is the logic that evaluates the each of the tool coupling and docking sensors. 
 
-```{% if accountedTools|length !=  allTools|length or printer["gcode_macro VARIABLES_LIST"].tc_state == -1 %}```
-
-Then it calls _EVALUATE_MACHINE_STATE
+```
+[gcode_macro _EVALUATE_MACHINE_STATE_QUICK]
+gcode:
+  {% set allTools = printer["gcode_macro VARIABLES_LIST"].tools %}
+  {% set activeTools = [] %}
+  {% set accountedTools = [] %}
+  #M118 "--->_EVALUATE_MACHINE_STATE_QUICK"
+  {% for tool in allTools %}
+          #We do both mechanical endstops individually to catch the case where carriage is sitting flush with a tool while it is still in dock
+          {% if printer["atc_switch tc"~tool].state == "PRESSED" %}
+                  {activeTools.append(tool|int) or ""}
+                  {accountedTools.append(tool) or ""}
+          {% endif %}
+          {% if printer["atc_switch td"~tool].state == "PRESSED" %}
+                        {accountedTools.append(tool) or ""}
+          {% endif %}
+  {% endfor %}
+  #M118 Active Tools {activeTools}
+  #M118 Account Tools {accountedTools}
+  #M118 All Tools {allTools}
+  {% if accountedTools|length !=  allTools|length or printer["gcode_macro VARIABLES_LIST"].tc_state == -1 %}
+         #Error Detected
+         #M118 "Tools Mismatch"     
+        _EVALUATE_MACHINE_STATE
+  {% else %}
+        # Check if Active Tool has changed
+        #M118 Active Tools {activeTools}
+        {% if activeTools|length > 0 %}
+                {% set active_tool = activeTools[0]|int %}
+        {% else %}
+                {% set active_tool = -1 %}
+        {% endif %}
+        #M118 "Active Tool {active_tool}"
+        {% if active_tool != printer["gcode_macro VARIABLES_LIST"].active_tool %}
+                 #M118 "Active Tool has Changed"            
+             _EVALUATE_MACHINE_STATE
+        {% endif %}
+  {% endif %}
+```
 
 ## _EVALUATE_MACHINE_STATE ##
 
