@@ -1,5 +1,5 @@
 
-# Concepts about klipper programming environment as it relates to toolchanging. #
+# Concepts about klipper programming environment as it relates to tool changing and crash_detection. #
 
 
 ## SAVE_GCODE_STATE ##
