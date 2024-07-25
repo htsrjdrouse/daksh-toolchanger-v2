@@ -78,3 +78,48 @@ In summary, the DURATION parameter defines the time window during which Klipper 
 So if you printer is fails after loading and docking tools you may want to extend the DURATION. 
 
 FORCE=0: This parameter controls the behavior if the tool change verification fails. A value of 0 means that if the verification fails, the print will pause and wait for manual intervention to resume. If FORCE were set to 1, the print would abort instead of pausing.
+
+```
+[gcode_macro VERIFY_TOOLCHANGE_DURING_PRINT]
+        gcode:
+                M118 "VERIFY_TOOLCHANGE_DURING_PRINT in {params.DURATION} seconds with printer state: {printer.idle_timeout.state} FORCE: {params.FORCE}"
+                {% if printer.idle_timeout.state == "Printing" or params.FORCE|int == 1 %}
+                        M118 "EXECUTING VERIFY_TOOLCHANGE_DURING_PRINT in {params.DURATION} seconds"
+                        UPDATE_DELAYED_GCODE ID=_DELAYED_CHECK_MACHINE_STATE_QUICK DURATION=0
+                        UPDATE_DELAYED_GCODE ID=_DELAYED_CHECK_MACHINE_STATE_QUICK DURATION={params.DURATION}
+                {% endif %}
+```
+
+Let's break down this macro:
+
+Macro Name: VERIFY_TOOLCHANGE_DURING_PRINT
+
+Purpose: This macro verifies a tool change during a print job, ensuring the printer is in a safe state.
+G-code:
+
+M118 "VERIFY_TOOLCHANGE_DURING_PRINT in {params.DURATION} seconds with printer state: {printer.idle_timeout.state} FORCE: {params.FORCE}":
+
+Prints a message to the console indicating the start of the verification process, including the duration, printer state, and force setting.
+
+{% if printer.idle_timeout.state == "Printing" or params.FORCE|int == 1 %}:
+
+Conditional statement that checks two conditions:
+printer.idle_timeout.state == "Printing": If the printer is currently printing.
+params.FORCE|int == 1: If the FORCE parameter is set to 1 (abort print on failure).
+If either condition is true, the code inside the {% if %} block is executed.
+
+M118 "EXECUTING VERIFY_TOOLCHANGE_DURING_PRINT in {params.DURATION} seconds":
+Prints a message to the console indicating the verification process is executing.
+
+UPDATE_DELAYED_GCODE ID=_DELAYED_CHECK_MACHINE_STATE_QUICK DURATION=0:
+Resets a delayed G-code command ( _DELAYED_CHECK_MACHINE_STATE_QUICK ) to execute immediately ( DURATION=0 ).
+
+UPDATE_DELAYED_GCODE ID=_DELAYED_CHECK_MACHINE_STATE_QUICK DURATION={params.DURATION}:
+Updates the delayed G-code command to execute after the specified duration ( {params.DURATION} seconds).
+
+In summary, this macro:
+
+1. Prints a message indicating the start of the verification process.
+2. Checks if the printer is printing or if FORCE is set to 1.
+3. If the conditions are met, it prints a message indicating the verification is executing and updates a delayed G-code command to execute after the specified duration.
+The delayed G-code command (_DELAYED_CHECK_MACHINE_STATE_QUICK) is defined elsewhere in the Klipper configuration and performs a quick machine state check. If the verification fails, the print will be paused or aborted, depending on the FORCE setting.
