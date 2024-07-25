@@ -123,3 +123,46 @@ In summary, this macro:
 2. Checks if the printer is printing or if FORCE is set to 1.
 3. If the conditions are met, it prints a message indicating the verification is executing and updates a delayed G-code command to execute after the specified duration.
 The delayed G-code command (_DELAYED_CHECK_MACHINE_STATE_QUICK) is defined elsewhere in the Klipper configuration and performs a quick machine state check. If the verification fails, the print will be paused or aborted, depending on the FORCE setting.
+
+## _DELAYED_CHECK_MACHINE_STATE_QUICK ##
+
+```
+[delayed_gcode _DELAYED_CHECK_MACHINE_STATE_QUICK]
+initial_duration: 0
+gcode:
+        #M118 "Evaluating Machine State"
+        _EVALUATE_MACHINE_STATE_QUICK
+        {% if printer.idle_timeout.state == "Printing" %}
+                VERIFY_TOOLCHANGE_DURING_PRINT DURATION=5 FORCE=0
+        {% endif %}
+```
+
+Macro Name: _DELAYED_CHECK_MACHINE_STATE_QUICK
+
+Type: Delayed G-code macro
+
+Purpose: This macro checks the machine state and verifies tool changes during printing.
+
+Configuration:
+
+initial_duration: 0: The macro is initially set to execute immediately (0 seconds delay).
+
+G-code:
+
+#M118 "Evaluating Machine State": A commented-out line that would print a message to the console if uncommented.
+_EVALUATE_MACHINE_STATE_QUICK: Calls another macro (not shown here) that quickly evaluates the machine state.
+
+{% if printer.idle_timeout.state == "Printing" %}: Conditional statement that checks if the printer is currently printing.
+VERIFY_TOOLCHANGE_DURING_PRINT DURATION=5 FORCE=0: If the printer is printing, this line executes the VERIFY_TOOLCHANGE_DURING_PRINT macro (explained earlier) with:
+DURATION=5: Verification window of 5 seconds.
+FORCE=0: Pause print on failure, don't abort.
+
+In summary, this macro:
+
+Evaluates the machine state quickly.
+
+If the printer is printing, it verifies tool changes during the next 5 seconds.
+
+If verification fails, the print will be paused (due to FORCE=0).
+
+This macro is likely used in conjunction with the previous one to create a delayed verification process. The UPDATE_DELAYED_GCODE commands in the previous macro update the execution time of this macro, allowing it to run at a later time (e.g., after a tool change).
