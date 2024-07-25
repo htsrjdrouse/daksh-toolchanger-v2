@@ -206,5 +206,9 @@ By using delayed G-code macros, you can create complex workflows and automate ta
 
 This is the logic that evaluates the each of the tool coupling and docking sensors. 
 
+```{% if accountedTools|length !=  allTools|length or printer["gcode_macro VARIABLES_LIST"].tc_state == -1 %}```
 
+Then it calls _EVALUATE_MACHINE_STATE
+
+## _EVALUATE_MACHINE_STATE ##
 
