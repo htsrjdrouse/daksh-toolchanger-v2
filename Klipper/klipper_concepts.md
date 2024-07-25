@@ -166,3 +166,39 @@ If the printer is printing, it verifies tool changes during the next 5 seconds.
 If verification fails, the print will be paused (due to FORCE=0).
 
 This macro is likely used in conjunction with the previous one to create a delayed verification process. The UPDATE_DELAYED_GCODE commands in the previous macro update the execution time of this macro, allowing it to run at a later time (e.g., after a tool change).
+
+## Delayed G-code macros ##
+
+In Klipper, a Delayed G-code macro is a type of macro that allows you to execute G-code commands at a later time, rather than immediately.
+
+Key characteristics:
+
+Delayed execution: Delayed G-code macros are executed after a specified delay time, which can be set using the initial_duration parameter or updated using the UPDATE_DELAYED_GCODE command.
+
+G-code commands: Delayed G-code macros contain G-code commands, just like regular macros, but they are executed at a later time.
+
+Async execution: Delayed G-code macros are executed asynchronously, meaning they don't block the execution of other macros or G-code commands.
+
+Use cases:
+
+Tool change verification: Verify tool changes after a short delay to ensure the tool is properly seated and ready for use.
+
+Machine state checks: Check the machine state (e.g., temperature, position) after a delay to ensure everything is stable before proceeding.
+
+Timed actions: Perform actions at specific times during a print, such as retracting the filament at a certain height.
+
+Syntax:
+Delayed G-code macros are defined using the following syntax:
+
+```
+[delayed_gcode <macro_name>]
+initial_duration: <delay_time>
+gcode:
+  # G-code commands to execute after the delay
+```
+
+Replace <macro_name> with the name of your macro, <delay_time> with the initial delay time (in seconds), and add your G-code commands under the gcode section.
+
+By using delayed G-code macros, you can create complex workflows and automate tasks that require timed execution, making your 3D printing experience more efficient and reliable.
+
+
