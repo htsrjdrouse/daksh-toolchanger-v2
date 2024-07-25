@@ -202,3 +202,9 @@ Replace <macro_name> with the name of your macro, <delay_time> with the initial 
 By using delayed G-code macros, you can create complex workflows and automate tasks that require timed execution, making your 3D printing experience more efficient and reliable.
 
 
+## _EVALUATE_MACHINE_STATE_QUICK ##
+
+This is the logic that evaluates the each of the tool coupling and docking sensors. 
+
+
+
