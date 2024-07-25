@@ -248,7 +248,7 @@ gcode:
 
 ## _EVALUATE_MACHINE_STATE ##
 
-This is the more thorough analysis of the coupling and docking sensors. The first part sets the variables data (active_tool, tc_state and tc_error_code). The second part sets the LED status color and calls the SET_ENCLOSURE_ERROR_START and PAUSE_AND_ALERT macros. 
+This is the more thorough analysis of the coupling and docking sensors. The first part sets the variables data (active_tool, tc_state and tc_error_code). The second part sets the LED status color and calls the SET_ENCLOSURE_ERROR_START (enclosure LEDs are not set up on current system and should be commented out) and PAUSE_AND_ALERT macros. 
 
 ```
 [gcode_macro _EVALUATE_MACHINE_STATE]
@@ -381,6 +381,30 @@ gcode:
   {% endif %}
 ```
 
+## PAUSE_AND_ALERT ##
 
+```
+[gcode_macro PAUSE_AND_ALERT]
+gcode:                  
+        SET_PAUSE_TYPE TYPE=1 # Set Pause Type to Toolchanger State Error
+        PAUSE           
+```
 
+The problem with the PAUSE_AND_ALERT macro is that when the condition is not met, PAUSE is called temporarily, and when the condition is met, it resumes automatically without requiring user intervention.
 
+PAUSE_RESUME behaves similarly, but with a key difference:
+
+When the condition is not met, PAUSE_RESUME will pause the print temporarily, just like PAUSE.
+
+However, when the condition is met, PAUSE_RESUME will not resume automatically. Instead, it will wait for the user to press the resume button to continue the print.
+In other words, PAUSE_RESUME requires explicit user confirmation to resume the print, whereas PAUSE will resume automatically when the condition is met.
+So, if you want the print to resume automatically when the condition is met, use PAUSE. If you want the print to wait for user confirmation before resuming, use PAUSE_RESUME.
+
+So the macro should be changed to looking like this:
+
+```
+[gcode_macro PAUSE_AND_ALERT]
+gcode:                  
+        SET_PAUSE_TYPE TYPE=1 # Set Pause Type to Toolchanger State Error
+        PAUSE_RESUME
+```
