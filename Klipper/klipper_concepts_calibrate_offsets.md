@@ -48,7 +48,7 @@ class ToolsCalibrate:
         self.printer = config.get_printer()
         self.name = config.get_name() # gets the [tools_calibrate] data 
         self.gcode_move = self.printer.load_object(config, "gcode_move")
-        self.probe = self.printer.lookup_object("probe")
+        self.probe = self.printer.lookup_object("probe") # is not needed
         self.probe_multi_axis = PrinterProbeMultiAxis(config, ProbeEndstopWrapper(config,'x'),
                                  ProbeEndstopWrapper(config, 'y'),
                                  ProbeEndstopWrapper(config, 'z'))
