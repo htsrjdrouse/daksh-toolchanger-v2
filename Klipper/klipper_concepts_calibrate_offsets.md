@@ -46,7 +46,7 @@ position can be negative).
 class ToolsCalibrate:
     def __init__(self, config):
         self.printer = config.get_printer()
-        self.name = config.get_name()
+        self.name = config.get_name() # gets the [tools_calibrate] data 
         self.gcode_move = self.printer.load_object(config, "gcode_move")
         self.probe = self.printer.lookup_object("probe")
         self.probe_multi_axis = PrinterProbeMultiAxis(config, ProbeEndstopWrapper(config,'x'),
