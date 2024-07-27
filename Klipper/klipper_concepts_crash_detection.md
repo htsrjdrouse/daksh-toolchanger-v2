@@ -390,21 +390,66 @@ gcode:
         PAUSE           
 ```
 
-The problem with the PAUSE_AND_ALERT macro is that when the condition is not met, PAUSE is called temporarily, and when the condition is met, it resumes automatically without requiring user intervention.
+The problem with the PAUSE macro is that when the condition is not met, PAUSE is called temporarily, and when the condition is met, it resumes automatically without requiring user intervention.
 
-PAUSE_RESUME behaves similarly, but with a key difference:
-
-When the condition is not met, PAUSE_RESUME will pause the print temporarily, just like PAUSE.
-
-However, when the condition is met, PAUSE_RESUME will not resume automatically. Instead, it will wait for the user to press the resume button to continue the print.
-In other words, PAUSE_RESUME requires explicit user confirmation to resume the print, whereas PAUSE will resume automatically when the condition is met.
-So, if you want the print to resume automatically when the condition is met, use PAUSE. If you want the print to wait for user confirmation before resuming, use PAUSE_RESUME.
-
-So the macro should be changed to looking like this:
+## PAUSE ##
+The PAUSE macro has been modified to fix this, in klipper_toolchanger, pause_resume.cfg contains the PAUSE and RESUME macros. 
 
 ```
-[gcode_macro PAUSE_AND_ALERT]
-gcode:                  
-        SET_PAUSE_TYPE TYPE=1 # Set Pause Type to Toolchanger State Error
-        PAUSE_RESUME
+[gcode_macro PAUSE]
+rename_existing: BASE_PAUSE
+gcode:
+ {% if printer['pause_resume'].is_paused|int == 0 %}
+   SET_GCODE_VARIABLE MACRO=RESUME VARIABLE=zhop VALUE=5  # Set Z-hop variable for RESUME
+   SAVE_GCODE_STATE NAME=PAUSE_state
+   BASE_PAUSE
+   G91
+   G1 Z5 F900
+   G90
+   ;TURN_OFF_HEATERS
+   ;M106 S0
+   SET_IDLE_TIMEOUT TIMEOUT=43200
+   RSCS_off
+   {% if error == 1 %}
+     M117 Print paused due to sensor error
+     # Additional error handling actions can be added here
+   {% else %}
+     M117 Print paused manually
+   {% endif %}
+ {% endif %}
+```
+
+## RESUME ##
+
+The RESUME macro now goes back down to the original z height position before the pause. 
+
+```
+[gcode_macro RESUME]
+rename_existing: BASE_RESUME
+variable_zhop: 5
+gcode:
+  {% if printer.pause_resume.is_paused %}
+	{% if printer["gcode_macro VARIABLES_LIST"].tc_state == 0 %}
+	 	G91
+		# Add Z-hop movement here
+      	G1 Z-{zhop} F900  # Move Z back down by zhop amount
+      	G90
+	 	{% if printer["gcode_macro VARIABLES_LIST"]["print_status"]|int == 1 %}
+			{% if printer["gcode_macro VARIABLES_LIST"]["pause_type"]|int == 1%}
+				PREPARE_TOOL_BEFORE_RESUME
+			{% endif %}
+		{% endif %}
+	 	RESTORE_GCODE_STATE NAME=PAUSE_state
+	 	BASE_RESUME
+	 	VERIFY_TOOLCHANGE_DURING_PRINT DURATION=5 FORCE=1
+	 	SAVE_GCODE_STATE NAME=PAUSE_state
+	 	RSCS_LAYER_CHECK LAYER={printer["gcode_macro VARIABLES_LIST"].current_layer}
+		RESET_PAUSE_TYPE
+		SET_STATUS_LED_LOCK T={printer["gcode_macro VARIABLES_LIST"].active_tool}
+		SET_ENCLOSURE_DEFAULT
+		M117 ""
+	{% else %}
+		M118 "Printer in Error State - Cannot Resume Print"
+	{% endif %}
+  {% endif %}
 ```
