@@ -51,5 +51,5 @@ gcode:
         SET_PAUSE_TYPE TYPE=2 # Set Pause Type to Filament
         SET_STATUS_LED_ERROR_START T={params.T}
         SET_ENCLOSURE_ERROR_START
-        PAUSE_RESUME
+        PAUSE
 ```
