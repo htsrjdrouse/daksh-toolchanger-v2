@@ -392,6 +392,17 @@ gcode:
 
 The problem with the PAUSE macro is that when the condition is not met, PAUSE is called temporarily, and when the condition is met, it resumes automatically without requiring user intervention.
 
+
+## SET_PAUSE_TYPE ##
+
+```
+[gcode_macro SET_PAUSE_TYPE]
+gcode:
+        SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=pause_type VALUE={params.TYPE}
+ ```
+
+
+
 ## PAUSE ##
 The PAUSE macro has been modified to fix this, in klipper_toolchanger, pause_resume.cfg contains the PAUSE and RESUME macros. 
 
