@@ -504,7 +504,7 @@ gcode:
 
 ## SUB_TOOL_PICKUP_END ##
 
-In toolchanger.cfg, when the tool is loaded which is initiated in tool.py but eventually calls [toolgroup 0] and then SUB_TOOL_PICKUP_END when picking up a tool, after loading  VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0.  The problem is that if error is not getting generated when it is incorrectly loaded/unloaded. So this my need to be changed from FORCE=0 to FORCE=1. 
+In toolchanger.cfg, when the tool is loaded which is initiated in tool.py but eventually calls [toolgroup 0] and then SUB_TOOL_PICKUP_END when picking up a tool. The problem is that if error is not getting generated when it is incorrectly loaded/unloaded quickly enough, the VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0 is removed (commented out).  
 
 ```
 [gcode_macro SUB_TOOL_PICKUP_END]
@@ -557,6 +557,27 @@ gcode:
   CLEAR_TOOLHEAD_POSITION
   ;G4 P2000  ; Wait for 2 seconds
   M400
-  VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0 #Delayed GCode to Verify Successful toolchange during a print 
+  #VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0
   TOOLCHANGE_Z_MOVE_END
  ```
+
+## SUB_TOOL_DROPOFF_END ##
+
+Sometimes, after unloading the tool the error gets triggered to early, so to delay it, VERIFY_TOOLCHANGE_DURING_PRINT DURATION=5 was added after the final move with a 5 second delay.
+
+```
+[gcode_macro SUB_TOOL_DROPOFF_END]
+description: Internal subroutine. Do not use!
+gcode:
+  {%set myself = printer['tool '~params.T]%}
+  
+  SET_STATUS_LED_DOCK T={params.T}
+  
+  RESTORE_GCODE_STATE NAME=TOOL_DROPOFF_002 MOVE=0   # Restore Gcode state
+  RESTORE_ACCELERATION                # Restore saved acceleration value.	
+  
+  #added this to improve reliability 
+  M400
+  VERIFY_TOOLCHANGE_DURING_PRINT DURATION=5 FORCE=0 #Delayed GCode to Verify Successful toolchange during a print 
+    
+```
