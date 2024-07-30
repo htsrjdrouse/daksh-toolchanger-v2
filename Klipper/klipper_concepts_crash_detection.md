@@ -401,6 +401,16 @@ gcode:
         SET_GCODE_VARIABLE MACRO=VARIABLES_LIST VARIABLE=pause_type VALUE={params.TYPE}
  ```
 
+SET_GCODE_VARIABLE is a standard Klipper function. It's used to set or modify variables within G-code macros.
+
+Here's what this macro does:
+
+1. [gcode_macro SET_PAUSE_TYPE]: This line defines a new G-code macro named SET_PAUSE_TYPE.
+2. SET_GCODE_VARIABLE: This is the Klipper command used to set or modify a variable within a macro.
+3.  MACRO=VARIABLES_LIST: This specifies that we're setting a variable in a macro named VARIABLES_LIST. This is likely another macro defined elsewhere in the configuration that stores various variables.
+4.  VARIABLE=pause_type: This is the name of the variable we're setting or modifying within the VARIABLES_LIST macro.
+5.  VALUE={params.TYPE}: This sets the value of the pause_type variable. The {params.TYPE} syntax means it's taking the value of the TYPE parameter passed when calling the SET_PAUSE_TYPE macro.
+
 
 
 ## PAUSE ##
