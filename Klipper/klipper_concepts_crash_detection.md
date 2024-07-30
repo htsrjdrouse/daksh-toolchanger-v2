@@ -468,7 +468,7 @@ gcode:
 
 ## RESUME ##
 
-The RESUME macro now goes back down to the original z height position before the pause. 
+The RESUME macro now goes back down to the original z height position before the pause.  
 
 ```
 [gcode_macro RESUME]
@@ -492,9 +492,10 @@ gcode:
 	 	SAVE_GCODE_STATE NAME=PAUSE_state
 	 	RSCS_LAYER_CHECK LAYER={printer["gcode_macro VARIABLES_LIST"].current_layer}
 		RESET_PAUSE_TYPE
-		SET_STATUS_LED_LOCK T={printer["gcode_macro VARIABLES_LIST"].active_tool}
+		{% if printer["gcode_macro VARIABLES_LIST"].active_tool|int > -1 %}
+		  SET_STATUS_LED_LOCK T={printer["gcode_macro VARIABLES_LIST"].active_tool}
+		{% endif %}  
 		SET_ENCLOSURE_DEFAULT
-		M117 ""
 	{% else %}
 		M118 "Printer in Error State - Cannot Resume Print"
 	{% endif %}
