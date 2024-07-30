@@ -438,7 +438,7 @@ gcode:
 ```
 
 ## PAUSE ##
-The PAUSE macro has been modified to fix this, in klipper_toolchanger, pause_resume.cfg contains the PAUSE and RESUME macros. 
+The PAUSE macro has been modified to fix this, in klipper_toolchanger, pause_resume.cfg contains the PAUSE and RESUME macros. When looking at this code, the sensor error can be ToolChanger Error or a Filament Error. The error conditional should be > 0 rather than == 1 or you add an additional conditional to indicate the Filament Error. 
 
 ```
 [gcode_macro PAUSE]
