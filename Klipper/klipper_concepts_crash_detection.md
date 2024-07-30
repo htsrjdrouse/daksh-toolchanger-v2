@@ -468,7 +468,7 @@ gcode:
 
 ## RESUME ##
 
-The RESUME macro now goes back down to the original z height position before the pause.  
+The RESUME macro now goes back down to the original z height position before the pause.  This was modified by including an active tool conditional or you get an error when there is not tool loaded.
 
 ```
 [gcode_macro RESUME]
@@ -501,3 +501,62 @@ gcode:
 	{% endif %}
   {% endif %}
 ```
+
+## SUB_TOOL_PICKUP_END ##
+
+In toolchanger.cfg, when the tool is loaded which is initiated in tool.py but eventually calls [toolgroup 0] and then SUB_TOOL_PICKUP_END when picking up a tool, after loading  VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0.  The problem is that if error is not getting generated when it is incorrectly loaded/unloaded. So this my need to be changed from FORCE=0 to FORCE=1. 
+
+```
+[gcode_macro SUB_TOOL_PICKUP_END]
+description: Internal subroutine. Do not use!
+# Tnnn: Tool to pickup
+gcode:
+
+   {%set myself = printer['tool '~params.T]%}
+   {% set lock_x = printer.save_variables.variables['t'~params.T~'_lock_x'] %}
+   {% set lock_y = printer.save_variables.variables['t'~params.T~'_lock_y'] %}
+   {%set global_offset_z =  printer["gcode_macro VARIABLES_LIST"].global_z_offset|float %}
+   
+   {% if 't0_x_offset' not in printer.save_variables.variables %}
+      {%set offset_x =  0 %}
+      {%set offset_y =  0 %}
+      {%set offset_z = 0 %}  
+  {% else %}
+      {%set offset_x =  printer.save_variables.variables['t'~params.T~'_x_offset']|float%}
+      {%set offset_y =  printer.save_variables.variables['t'~params.T~'_y_offset']|float%}
+      {% if params.T|int > 0 %}
+        {%set offset_z =  printer.save_variables.variables['t0_z_offset']|float + printer.save_variables.variables['t'~params.T~'_z_offset']|float + global_offset_z|float %}
+      {% else %}
+        {%set offset_z =  printer.save_variables.variables['t'~params.T~'_z_offset']|float %}
+      {% endif %}    
+  {% endif %}
+
+  M118 T{params.T}
+  M118 OFFSET X: {offset_x}
+  M118 OFFSET Y: {offset_y}
+  M118 OFFSET Z: {offset_z}
+     
+  ##############  Move out to zone  ##############
+  #G0 Y{myself.zone[1]|int - 50} F{printer.save_variables.variables['ktcc_speed1']|int}
+  G0 Y{lock_y|int - 120} F{printer.save_variables.variables['ktcc_speed1']|int}
+  RESTORE_ACCELERATION 
+  SET_GCODE_OFFSET X={offset_x|float} Y={offset_y|float} Z={offset_z|float} MOVE=1  # Set X and Y offsets, 
+  SET_ACTIVE_TOOL_PROBE T={params.T}
+  SET_STATUS_LED_LOCK T={params.T}
+  G92 E0
+  #{% if printer["gcode_macro TOOL_USE_COUNT"]['t'~params.T~'_use_count'] > 0 %}
+  ##Enable Specific Tool Filament Sensor  
+  ENABLE_FILAMENT_SENSOR T={params.T}
+  #{% endif %}
+  INCREMENT_TOOL_USE_COUNT T={params.T}
+  #Move to the last position of toolhead before toolchange
+  {% if printer["gcode_macro STORE_TOOLHEAD_POSITION"].toolhead_pos_stored|int == 1  and printer["gcode_macro STORE_TOOLHEAD_POSITION"].bypass_toolhead_position|int == 0 %}
+     M118 Move to old toolhead position
+     G1 X{printer["gcode_macro STORE_TOOLHEAD_POSITION"].toolhead_x} Y{printer["gcode_macro STORE_TOOLHEAD_POSITION"].toolhead_y} F{printer.save_variables.variables['ktcc_speed1']|int}
+  {% endif %}
+  CLEAR_TOOLHEAD_POSITION
+  ;G4 P2000  ; Wait for 2 seconds
+  M400
+  VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0 #Delayed GCode to Verify Successful toolchange during a print 
+  TOOLCHANGE_Z_MOVE_END
+ ```
