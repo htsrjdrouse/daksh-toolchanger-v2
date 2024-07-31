@@ -1,6 +1,7 @@
 
 # Concepts about klipper programming environment as it relates to tool changing and crash_detection. #
 
+Crash detection is important to ensure that the toolchanging is working, crash_detection.cfg controls this process, it is set up so that you can verify the toolchange during print after toolchanging after a specified time duration. 
 
 ## SAVE_GCODE_STATE ##
 
