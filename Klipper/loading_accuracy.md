@@ -99,4 +99,6 @@ The nudge tool works well if you use copper screws and if you want to know how a
 
 I ended up having to print a calibration tower to figure out the offsets. For this tower, I ended up having the following offsets, t1_offset = (-3.2, -0.81041, 0.23583). So its just the x offset where there is big changes. But the y offset also needs to be adjusted slightly which I still need to do. I think the y offset probably needs to be adjust to -0.61 (200 microns less) 
 
+If you wanted to manual query the nudge tool, you can run TOOL_CALIBRATE_QUERY_PROBE. Then you can just manually test this. 
+
 
