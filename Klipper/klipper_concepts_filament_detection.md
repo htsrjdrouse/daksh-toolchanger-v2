@@ -1,5 +1,22 @@
 # Filament sensors #
 
+
+Testing the Sensors
+1. Enable the sensors:
+Run the macro TURN_ON_ALL_FILAMENT_SENSORS in your Klipper console.
+2. Query individual sensors:
+Use the QUERY_FILAMENT_SENSOR command with the sensor name:
+
+```
+QUERY_FILAMENT_SENSOR SENSOR=encoder_t0
+QUERY_FILAMENT_SENSOR SENSOR=encoder_t1
+```
+3. Test sensor response:
+Move filament through the sensor and run the query again to see if the state changes.
+
+
+
+
 The code that controls this is filament_sensors.cfg. This is a set up for 2 tools. The key is to make sure TURN_ON_ALL_FILAMENT_SENSORS is in the start gcode. The PAUSE_AND_ALERT_FILAMENT macro will be modified so that PAUSE is changed to PAUSE_RESUME. ENABLE_FILAMENT_SENSOR is called by toolchanger.cfg through the gcode_macro SUB_TOOL_PICKUP_END. ENABLE_FILAMENT_SENSOR calls SET_FILAMENT_SENSOR which is a standard klipper function that is used to configure and control filament sensors, such as filament presence, detection, and runtime monitoring
 
 ```
