@@ -1,5 +1,9 @@
 This starts by calling the macro NUDGE_FIND_TOOLOFFSETS
 
+
+## TOOL_CALIBRATE_QUERY_PROBE ##
+This checks the probe state
+
 ## NUDGE_FIND_TOOLOFFSETS ##
 ```
 [gcode_macro NUDGE_FIND_TOOL_OFFSET]
