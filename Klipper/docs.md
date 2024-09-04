@@ -11,7 +11,7 @@ This configuration is for just 2 tools and there is just 1 detachable z sensor p
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/crash_detection_docs.md
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/dock_calibrate_docs.md
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/status_led_docs.md
-- https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/filament_sensors_docs.md <-- no longer used replaced by 
+- https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/filament_sensors_docs.md <-- no longer used replaced by smart_filament_sensors
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/smart_filament_sensors_docs.md
 - https://github.com/htsrjdrouse/daksh-toolchanger-v2/blob/main/Klipper/config/tool_usage_docs.md
 ## The klipper_toolchanger directory contains KTCC (https://github.com/TypQxQ/Klipper_ToolChanger/tree/master) gcodes 
