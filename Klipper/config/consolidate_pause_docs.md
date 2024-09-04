@@ -1,5 +1,12 @@
 
+This works with smart_filament_sensor.cfg: https://www.printables.com/model/489791-smart-filament-sensor
 
+
+
+
+<details><summary>CONSOLIDATE_PAUSE</summary>
+
+```
 [gcode_macro CONSOLIDATE_PAUSE]
 description: Pause the actual running print
 #rename_existing: PAUSE_BASE
@@ -58,9 +65,13 @@ gcode:
   {% else %}
     M118 "Print Already Paused"
   {% endif %}
+```
+</details>
 
 
+<details><summary>CONSOLIDATE_RESUME</summary>
 
+```
 [gcode_macro CONSOLIDATE_RESUME]
 description: Resume the actual running print
 #rename_existing: RESUME_BASE
@@ -154,4 +165,5 @@ gcode:
   {% endif %}
   RESTORE_GCODE_STATE NAME=PAUSE_state MOVE=1
   RESUME_BASE VELOCITY={params.VELOCITY | default(sp_move)}
-
+```
+</details>
