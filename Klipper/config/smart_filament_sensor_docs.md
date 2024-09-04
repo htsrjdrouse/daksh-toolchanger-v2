@@ -98,16 +98,28 @@ gcode:
 ```
 </details>
 
-<details><summary>PAUSE_AND_ALERT_FILAMENT</summary>
+<details><summary>delayed_gcode SETFILAMENTSENSOR_ON</summary>
 
 ``` 
-[gcode_macro PAUSE_AND_ALERT_FILAMENT]
+[delayed_gcode SETFILAMENTSENSOR_ON]
 gcode:
-        M117 TOOLHEAD T{params.T} {params.STATE}
-        SET_PAUSE_TYPE TYPE=2 # Set Pause Type to Filament
-        SET_STATUS_LED_ERROR_START T={params.T}
-        SET_ENCLOSURE_ERROR_START
-        PAUSE
-        #SEND_SLACK_MESSAGE MSG="FILAMENT ERROR DETECTED - PRINT PAUSED - PLEASE CHECK. T={params.T}}"
+  {% if params.T|int > 0 and params.T|int < 5 %}
+ 	#SET_FILAMENT_SENSOR SENSOR=filament_sensor ENABLE=1
+ 	SET_FILAMENT_SENSOR SENSOR=encoder_t{params.T} ENABLE=1
+  {% endif %}
 ```
 </details>
+
+
+<details><summary>delayed_gcode SETFILAMENTSENSOR_OFF</summary>
+
+``` 
+[delayed_gcode SETFILAMENTSENSOR_OFF]
+gcode:
+  {% if params.T|int > 0 and params.T|int < 5 %}
+ 	#SET_FILAMENT_SENSOR SENSOR=filament_sensor ENABLE=1
+ 	SET_FILAMENT_SENSOR SENSOR=encoder_t{params.T} ENABLE=0
+  {% endif %}
+```
+</details>
+
