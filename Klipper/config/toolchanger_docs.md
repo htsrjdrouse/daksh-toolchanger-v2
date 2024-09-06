@@ -195,63 +195,60 @@ description: Internal subroutine. Do not use!
 # Tnnn: Tool to pickup
 gcode:
 
+   {% set offset = printer.save_variables.variables['t'~params.T~'_offset'] %}
    {%set myself = printer['tool '~params.T]%}
    {% set lock_x = printer.save_variables.variables['t'~params.T~'_lock_x'] %}
    {% set lock_y = printer.save_variables.variables['t'~params.T~'_lock_y'] %}
-   {%set global_offset_z =  printer["gcode_macro VARIABLES_LIST"].global_z_offset|float %}
-
+   {%set global_offset_z =  printer["gcode_macro VARIABLES_LIST"].global_z_offset|float %}  
    {% if 't0_x_offset' not in printer.save_variables.variables %}
       {%set offset_x =  0 %}
       {%set offset_y =  0 %}
-      {%set offset_z = 0 %}
+      {%set offset_z = 0 %}  
   {% else %}
       {%set offset_x =  printer.save_variables.variables['t'~params.T~'_x_offset']|float%}
       {%set offset_y =  printer.save_variables.variables['t'~params.T~'_y_offset']|float%}
       {% if params.T|int > 0 %}
         {%set offset_z =  printer.save_variables.variables['t0_z_offset']|float + printer.save_variables.variables['t'~params.T~'_z_offset']|float + global_offset_z|float %}
       {% else %}
-        {%set offset_z =  printer.save_variables.variables['t'~params.T~'_z_offset']|float %}
-      {% endif %}
-  {% endif %}
-
-
-  M118 T{params.T}
-  M118 OFFSET X: {offset_x}
-  M118 OFFSET Y: {offset_y}
-  M118 OFFSET Z: {offset_z}
-
-
-
+        #{%set offset_z =  printer.save_variables.variables['t'~params.T~'_z_offset']|float %}
+        APPLY_TOOL_OFFSET t0_z_offset
+      {% endif %}    
+  {% endif %}   
   ##############  Move out to zone  ##############
   #G0 Y{myself.zone[1]|int - 50} F{printer.save_variables.variables['ktcc_speed1']|int}
   G0 Y{lock_y|int - 120} F{printer.save_variables.variables['ktcc_speed1']|int}
-
-  RESTORE_ACCELERATION
-
+  RESTORE_ACCELERATION 
   SET_GCODE_OFFSET X={offset_x|float} Y={offset_y|float} Z={offset_z|float} MOVE=1  # Set X and Y offsets, 
-  ;SET_ACTIVE_TOOL_PROBE T={params.T} ; no setting active tool probe
-  ;SET_STATUS_LED_LOCK T={params.T}
-
+  SET_ACTIVE_TOOL_PROBE T={params.T}
+  SET_STATUS_LED_LOCK T={params.T}
+ 
   G92 E0
-
-  #{% if printer["gcode_macro TOOL_USE_COUNT"]['t'~params.T~'_use_count'] > 0 %}
-  ##Enable Specific Tool Filament Sensor  
-  ENABLE_FILAMENT_SENSOR T={params.T}
-
+  
+  #SETFILAMENTSENSOR_ON T={params.T}
   #{% endif %}
   INCREMENT_TOOL_USE_COUNT T={params.T}
-
+ 
   #Move to the last position of toolhead before toolchange
-
+    
   {% if printer["gcode_macro STORE_TOOLHEAD_POSITION"].toolhead_pos_stored|int == 1  and printer["gcode_macro STORE_TOOLHEAD_POSITION"].bypass_toolhead_position|int == 0 %}
      M118 Move to old toolhead position
      G1 X{printer["gcode_macro STORE_TOOLHEAD_POSITION"].toolhead_x} Y{printer["gcode_macro STORE_TOOLHEAD_POSITION"].toolhead_y} F{printer.save_variables.variables['ktcc_speed1']|int}
   {% endif %}
   CLEAR_TOOLHEAD_POSITION
-
-  VERIFY_TOOLCHANGE_DURING_PRINT DURATION=30 FORCE=0 #Delayed GCode to Verify Successful toolchange during a print 
-
+  
+  ;G4 P2000  ; Wait for 2 seconds
+  M400
+  ;VERIFY_TOOLCHANGE_DURING_PRINT DURATION=5 FORCE=0 #Delayed GCode to Verify Successful toolchange during a print 
+  
   TOOLCHANGE_Z_MOVE_END
+  
+  M118 Setting gcode offset T{params.T}
+  M118 OFFSET X: {offset[0]}
+  M118 OFFSET Y: {offset[1]}
+  M118 OFFSET Z: {offset[2]}
+  SET_GCODE_OFFSET X={offset[0]} Y={offset[1]} Z={offset[2]}
+
+
 
 ```
 </details>
@@ -264,53 +261,59 @@ gcode:
 description: Internal subroutine. Do not use!
 # Tnnn: Tool to pickup
 gcode:
-
+  M118 setting gcode offset back to 0
+  SET_GCODE_OFFSET X=0 Y=0 Z=0
   TOOLCHANGE_Z_MOVE_START
-
-  {%set myself = printer['tool '~params.T]%}
+  
+  {%set myself = printer['tool '~params.T]%}  
+  {% set lock_x = printer.save_variables.variables['t'~params.T~'_lock_x'] %}
   {% set unlock_x = printer.save_variables.variables['t'~params.T~'_unlock_x'] %}
   {% set unlock_y = printer.save_variables.variables['t'~params.T~'_unlock_y'] %}
 
   ##Turn Off All Filament Sensors
-  TURN_OFF_ALL_FILAMENT_SENSORS
-
+  #TURN_OFF_ALL_FILAMENT_SENSORS
+  
   #############  Retract the filament as per e3d Revo documentation  ##############
   {% if myself.extruder|default("none")|lower !="none" %}       # If the tool has an extruder:
     M568 P{myself.name} A1                                        # Put tool heater in standby
     SET_STEPPER_ENABLE STEPPER={ myself.extruder|lower} ENABLE=0  # turn off E Motor
   {% endif %}
-
-  {% if printer["gcode_macro STORE_TOOLHEAD_POSITION"].toolhead_pos_stored|int == 0  and printer["gcode_macro STORE_TOOLHEAD_POSITION"].bypass_toolhead_position|int == 0%}
+  
+  {% if printer["gcode_macro STORE_TOOLHEAD_POSITION"].toolhead_pos_stored|int == 0  and printer["gcode_macro STORE_TOOLHEAD_POSITION"].bypass_toolhead_position|int == 0%}  
       STORE_TOOLHEAD_POSITION X={printer.toolhead.position.x} Y={printer.toolhead.position.y}
-  {% endif %}
+  {% endif %} 	 
 
   SAVE_ACCELERATION                                            # Save current acceleration value.
   M204 S12000                                                   # Set high acceleration for toolchanging
-
+ 
   {% if myself.name|int != printer.toollock.tool_current|int %}
    { action_raise_error("SUB_TOOL_DROPOFF_START: Wrong tool. Asked to dropoff T" ~ myself.name ~ " while current is T" ~ printer.toollock.tool_current ~ ".") }
   {% endif %}
 
-
+  
  ##############  Move in to parking spot  ##############
-
+ 
 
   SET_GCODE_OFFSET X=0 Y=0 MOVE=1                                    # Set XY offset to 0 so we park the tool right.
-
+ 
   G0 X{unlock_x|int} Y{unlock_y|int-120} F{printer.save_variables.variables['ktcc_speed1']|int}               # Fast Move near the pickup position for tool.
-  G0 Y{unlock_y|int} F{printer.save_variables.variables['ktcc_speed1']|int}                                         # Slow Move to the pickup position for tool.
-
+  G0 Y{unlock_y-30|int} F{printer.save_variables.variables['ktcc_speed1']|int} 
+  G0 Y{unlock_y|int} F{printer.save_variables.variables['ktcc_speed2']|int}                                        # Slow Move to the pickup position for tool.
+ 
   SAVE_GCODE_STATE NAME=TOOL_DROPOFF_002                        # Save GCode state.
   G90                                                           # Absolute positions
-  TOOL_UNLOCK                         # Unlock the tool
-
-  G0 Y{unlock_y|int-10} F{printer.save_variables.variables['ktcc_speed2']|int}
-  G0 Y{unlock_y|int-40} F{printer.save_variables.variables['ktcc_speed1']|int}
+  TOOL_UNLOCK
+  G0 Y{unlock_y|int-20} F{printer.save_variables.variables['ktcc_speed2']|int}
+  #G0 Y{unlock_y|int} F{printer.save_variables.variables['ktcc_speed2']|int}
+  #G0 Y{unlock_y-30|int} F{printer.save_variables.variables['ktcc_speed2']|int} 
+  G0 Y{unlock_y|int-80} F{printer.save_variables.variables['ktcc_speed1']|int}
+ 
+ 
 
   #SET_GCODE_OFFSET Z=0 MOVE=1                                     # Set XY offset to 0 so we park the tool right. 
-
+   
   ## Tool Dropped- Change Display to No Tool Loaded
-
+  
 ```
 </details>
 
