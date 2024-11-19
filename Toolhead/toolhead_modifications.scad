@@ -9,26 +9,28 @@ include <microfluidics/multichannel_cameramount.scad>
 include <holder_half.scad>
 
 
+//toolhead_bottom_fix_improved_bambu_coolingfan_attach();
+//bambulab_extruder();
 
 
 
 /*
-*/
 translate([20,20,0]){
 dowel_pin(4.2);
 //translate([0,0,-2])m5nut(9.38);
 translate([0,0,-2])m5nut(9); //good for bottom
 //translate([0,0,-2])m5nut(9.12); //good for top
 }
+*/
 
 //mgn12_block();
 
 //toolchange_openscad();
-//translate([0,0,-1])toolhead_top_1_clone_openscad();
+translate([0,0,-1])toolhead_top_1_clone_openscad();
 //parts_cooling_fan_screwattach_ring();
 //color("lime")import("toolhead_bottom_fix_improved_bambu_coolingfan_attach.stl");
 //toolhead_bottom_fix_improved_bambu_coolingfan_attach();
-//#translate([-20+1.8-1,1.539,-6.6])translate([200,0,225.5])rotate([0,180,0])mgn12_hole();
+//translate([-20+1.8-1,1.539,-6.6])translate([200,0,225.5])rotate([0,180,0])mgn12_hole();
 //import("toolhead_top_1_fix_nom3fittings_endstop_mechanicalwire.stl");
 
 //translate([59.8,-0.15,0])toolheadtop2_fixed_nom3fittings_endstop();
@@ -41,7 +43,7 @@ translate([0,0,-2])m5nut(9); //good for bottom
 /*
 difference(){
 rotate([0,0,-20])import("DuctIVSingle.stl");
-translate([-15,-30,-4])#cube([50,80,20]);
+translate([-15,-30,-4])cube([50,80,20]);
 }
 */
 //ebb_mount();
@@ -82,12 +84,12 @@ translate([24.5,0,-2])cube([6,100,5]);
 module bottom_filament_switch(){
 
 translate([0.25,0,0]){
-#translate([60-2,-40+2,118.5-10])color("red")sphere(r=6.1/2, $fn=300);
-translate([60-2,-40+2-0,118.5-10])color("red")rotate([-90,0,0])#cylinder(r=6.1/2,h=6+0,$fn=300);
-//translate([60-2-2.8-0,-40+2+4.2,118.5-4.8-20])color("red")#cube([6+0,15+0,13.08+10]);
-translate([60-2-2.8-0,-40+2+4.2,118.5-4.8-10-1.5])color("red")#cube([6+0+6+5,15+0-2+0.5,13.08+3]);
+translate([60-2,-40+2,118.5-10])color("red")sphere(r=6.1/2, $fn=300);
+translate([60-2,-40+2-0,118.5-10])color("red")rotate([-90,0,0])cylinder(r=6.1/2,h=6+0,$fn=300);
+//translate([60-2-2.8-0,-40+2+4.2,118.5-4.8-20])color("red")cube([6+0,15+0,13.08+10]);
+translate([60-2-2.8-0,-40+2+4.2,118.5-4.8-10-1.5])color("red")cube([6+0+6+5,15+0-2+0.5,13.08+3]);
 
-#translate([0,0.8,0]){
+translate([0,0.8,0]){
 translate([60-2-30,-40+2+9,118.5-1.5-10])color("")rotate([0,90,0])cylinder(r=2.1/2,h=30,$fn=300);
 translate([60-2-30,-40+2+9,118.5-1.5+6.5-10])color("")rotate([0,90,0])cylinder(r=2.1/2,h=30,$fn=300);
 translate([60-2,-40+2+9,118.5-1.5+6.5-10])color("")rotate([0,90,0])cylinder(r=4/2,h=60,$fn=300);
@@ -105,7 +107,7 @@ translate([60-2,-40+2+9,118.5-1.5-10])color("")rotate([0,90,0])cylinder(r=4/2,h=
 module holder_half_top(){
 color("pink")translate([64-1.5,-19.5,70-5])rotate([-90,0,90])difference(){
 holder_half();
-translate([-18+1+41.5,0,-5])#cube([5,30+100,10]);
+translate([-18+1+41.5,0,-5])cube([5,30+100,10]);
 translate([-18+1,0,-5])cube([30,30+100,60]);
 translate([-18+1+58,10,-5])cube([30,30+100,60]);
 }
@@ -114,7 +116,7 @@ translate([-18+1+58,10,-5])cube([30,30+100,60]);
 module holder_half_bottom(){
 color("lightblue")translate([64-1.5,-19.5+54,70-5-70])rotate([90,0,-90])difference(){
 holder_half();
-translate([-18+1+41.5,0,-5])#cube([5,30+100,10]);
+translate([-18+1+41.5,0,-5])cube([5,30+100,10]);
 translate([-18+1,0+20,-5])cube([30,30+100,60]);
 translate([-18+1+58,10-30,-5])cube([30,30+100,60]);
 }
@@ -124,7 +126,7 @@ translate([-18+1+58,10-30,-5])cube([30,30+100,60]);
 //toolchanger_linearactuator();
 
 
-//#color("lime")translate([64-1.5,-20,70-5])rotate([-90,0,90])import("servo_linear_assy_servo_holder_top.stl");
+//color("lime")translate([64-1.5,-20,70-5])rotate([-90,0,90])import("servo_linear_assy_servo_holder_top.stl");
 
 module toolchanger_linearactuator(){
 
@@ -228,7 +230,7 @@ translate([47.5-0.21+26.25,-12.2-0.2-15-15-10,100-5-10+8-50+8.495+132])color("pe
 
 }
 
-#translate([47.5-0.21+26-1.2,-12.2-0.2-15-15+40-47,100-5-10+8-50+8.495+90+43])color("")rotate([90,0,0])cylinder(r=(2.9)/2,h=(50)/2,$fn=300);
+translate([47.5-0.21+26-1.2,-12.2-0.2-15-15+40-47,100-5-10+8-50+8.495+90+43])color("")rotate([90,0,0])cylinder(r=(2.9)/2,h=(50)/2,$fn=300);
 
 
 translate([47.5-0.21+26,-12.2-0.2-15-15,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(3.7)/2,h=(167-15.79)/2,$fn=300);
@@ -237,8 +239,8 @@ translate([0,0,27]){
 translate([47.5-0.21+26,-12.2-0.2-15-15,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(8.7)/2,h=(167-15.79)/2,$fn=300);
 translate([47.5-0.21+26-28,-12.2-0.2-15-15+36,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(11)/2,h=(200)/2,$fn=300);
 }
-//#translate([47.5-0.21+26.25,-12.2-0.2-15-15-10,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(2.9)/2,h=(167-15.79)/2,$fn=300);
-//#translate([47.5-0.21+26-28-11.9,-12.2-0.2-15-15+36-29.,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(2.9)/2,h=(200)/2,$fn=300);
+//translate([47.5-0.21+26.25,-12.2-0.2-15-15-10,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(2.9)/2,h=(167-15.79)/2,$fn=300);
+//translate([47.5-0.21+26-28-11.9,-12.2-0.2-15-15+36-29.,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(2.9)/2,h=(200)/2,$fn=300);
 
 }
 
@@ -253,7 +255,7 @@ translate([-0.0,0,0])difference(){
 translate([0,0,10])union(){
 translate([-20+5+0-22.57,1.539-2+0,-6.6+49.35+0-10])translate([80,-50,60])cube([20-5+0+22.5375,45+2,110-0-49.35+1.5-48+48+0]);
 translate([-20+5,1.539+45-15,-6.6+49.35-10])translate([80,-50,60])cube([20-5-0.05,15,110+24-0-49.35-72+72]);
-//#translate([-20-30,1.539+45-8,-6.6+49.35])translate([80,-50,60])cube([20+20,8,111-0-49.35]);
+//translate([-20-30,1.539+45-8,-6.6+49.35])translate([80,-50,60])cube([20+20,8,111-0-49.35]);
 }
 
 translate([40,-48.5,85.4])cube([23,43.3,20]);
@@ -265,10 +267,10 @@ translate([40+23+8-6.4+9,-48.5+8.25+7.38+5.6,45.6])cylinder(r=5.2/2,h=60,$fn=300
 
 
 translate([24-9+77,-63+146,5+175-8])rotate([0,90,-90])rotate([0,0,0])bottom_filament_switch();
-//#translate([66,-11,160])cylinder(r=2/2,h=30,$fn=300);
+//translate([66,-11,160])cylinder(r=2/2,h=30,$fn=300);
 
-translate([0-5.15+16,14.75+15,0+43.5-4+70])translate([60-1.95,-40,59])color("lightblue")cylinder(r=2.3/2,h=150,$fn=300);
-#translate([0-5.15+23,14.75-8.7,0+43.5-4+30])translate([60-1.95,-40,59])color("lightblue")cylinder(r=2.9/2,h=150,$fn=300);
+translate([0-5.15+16,14.75+15,0+43.5-4+70])translate([60-1.95,-40,59])color("lightblue")cylinder(r=2.0/2,h=150,$fn=300);
+translate([0-5.15+23,14.75-8.7,0+43.5-4+30])translate([60-1.95,-40,59])color("lightblue")cylinder(r=2.9/2,h=150,$fn=300);
 translate([0,0,-10]){
 translate([0-5.15,14.75,0+43.5-4])translate([60-1.95,-40,59])color("lightblue")cylinder(r=2.6/2,h=150,$fn=300);
 translate([0-5.15,14.75,0+43.5-4-6+2.1])translate([60-1.95,-40,59+14-5])color("lightblue")cylinder(r=(6.6-0)/2,h=11.2,$fn=300);
@@ -281,7 +283,7 @@ translate([60-1.95-10.7,-40+27.6,59+43.5-4])color("lightblue")cylinder(r=2.9/2,h
 translate([60-1.95-10.7+18.9,-40+27.6+2.6,59+43.5-4])color("lightblue")cylinder(r=2.9/2,h=22,$fn=300);
 translate([60-1.95-10.7,-40+27.6-26.58,59+43.5-4])color("lightblue")cylinder(r=2.9/2,h=22,$fn=300);
 translate([60-1.95-10.7+18.9,-40+27.6-26.58-4.7,59+43.5-4])color("lightblue")cylinder(r=2.9/2,h=22,$fn=300);
-#hull(){
+hull(){
 translate([58-1.95-10.7+18.9-12,-40+27.6-26.58-4.7+3,135])rotate([90,0,0])cylinder(r=6/2,h=32,$fn=300);
 translate([58-1.95-10.7+18.9-12,-40+27.6-26.58-4.7+3,119])rotate([90,0,0])cylinder(r=6/2,h=32,$fn=300);
 }
@@ -292,7 +294,7 @@ translate([60-1.95-10.7+18.9-6,-40+27.6-26.58-4.7+3,59+43.5-4])color("lightblue"
 translate([60-1.95-10.7+18.9+1,-40+27.6-26.58-4.7+6.5,59+43.5-4])color("lightblue")cylinder(r=5/2,h=32,$fn=300);
 }
 translate([0,0,0]){
-#translate([0-5.15+4-20,14.75-4.1-0,0+43.5-4-3.2])translate([60-1.95,-40,59+14-5+44.5])rotate([0,90,0])color("lightblue")cylinder(r=(6.6-1.25)/2,h=30.2,$fn=300);
+translate([0-5.15+4-20,14.75-4.1-0,0+43.5-4-3.2])translate([60-1.95,-40,59+14-5+44.5])rotate([0,90,0])color("lightblue")cylinder(r=(6.6-1.25)/2,h=30.2,$fn=300);
 translate([0-5.15+4-20,14.75-4.1-0,0+43.5-4-3.2])translate([60-1.95,-40,59+14-5+44.5])rotate([0,90,0])color("lightblue")cylinder(r=(8.3)/2,h=21.5,$fn=300);
 translate([0-5.15+4-20,14.75-4.1-0+1,0+43.5-4-3.2])translate([60-1.95+12,-40+10,59+14-5+56.5])rotate([-90,0,0])cylinder(r=(5)/2,h=19.,$fn=300);
 translate([0-5.15+4-20,14.75-4.1-0,0+43.5-4-3.2])translate([60-1.95,-40,59+14-5+44.5])rotate([0,90,0])color("lightblue")cylinder(r=(8.3)/2,h=19.,$fn=300);
@@ -374,7 +376,7 @@ translate([0-5.15+4-20-10,14.75-4.1-1.5+25-9,0+43.5-4-14.3])translate([60-1.95,-
 translate([0-5.15+4-20-10,14.75-4.1-1.5+25-9,0+43.5-4-14.3])translate([60-1.95+44,-40+0.7,59+14-5+40.3])rotate([0,90,0])color("lightblue")cylinder(r=(8.2)/2,h=22.5,$fn=300);
 }
 
-#translate([0,-31+3.2,26.8-51.8]){
+translate([0,-31+3.2,26.8-51.8]){
 translate([0-5.15+4-20-10,14.75-4.1-1.5+25-9,0+43.5-4-14.3])translate([60-1.95,-40+0.7,59+14-5+40.3])rotate([0,90,0])color("lightblue")cylinder(r=(4.2)/2,h=122.5,$fn=300);
 translate([0-5.15+4-20-10,14.75-4.1-1.5+25-9,0+43.5-4-14.3])translate([60-1.95+44,-40+0.7,59+14-5+40.3])rotate([0,90,0])color("lightblue")cylinder(r=(8.2)/2,h=22.5,$fn=300);
 }
@@ -389,12 +391,12 @@ translate([90-5-5-0.231-45-17,-47.9+0.5,150-14-9-5+12])cube([30,9+4,20]);
 
 translate([-20+17-2.1-1,1.539,-6.6])mgn12_hole();
 //translate([-20+17+200-5-10,1.539-57.78,-6.6])rotate([0,0,180])mgn12_hole();
-#translate([-20+1.8-1,1.539,-6.6])translate([200,0,225.5])rotate([0,180,0])mgn12_hole();
+translate([-20+1.8-1,1.539,-6.6])translate([200,0,225.5])rotate([0,180,0])mgn12_hole();
 
 translate([0,0,0]){
-#translate([20-0.3+60-3.4+1.8-2,-27-0-0.2+16.8,150-0.3+24.2])color("pink")rotate([0,90,0])rotate([0,0,0])cylinder(r=9.5/2,h=21,$fn=300);
-#translate([20-0.3+60-3.4+1.8-2-5+0.35,-27-0-0.2+16.8-15,150-0.3+24.2-5.8])color("pink")cube([7-0.35,21.04,4+5.8+4]);
-#translate([20-0.3+60-3.4+1.8-2-5+0.35,-27-0-0.2+16.8-15,150-0.3+24.2-5.8-4])color("pink")cube([3,21.04,4+5.8+4-1]);
+translate([20-0.3+60-3.4+1.8-2,-27-0-0.2+16.8,150-0.3+24.2])color("pink")rotate([0,90,0])rotate([0,0,0])cylinder(r=9.5/2,h=21,$fn=300);
+translate([20-0.3+60-3.4+1.8-2-5+0.35,-27-0-0.2+16.8-15,150-0.3+24.2-5.8])color("pink")cube([7-0.35,21.04,4+5.8+4]);
+translate([20-0.3+60-3.4+1.8-2-5+0.35,-27-0-0.2+16.8-15,150-0.3+24.2-5.8-4])color("pink")cube([3,21.04,4+5.8+4-1]);
 }
 translate([59.8,-0.15,0]){
 translate([90-5-5-0.231-120+16.5-2+1.5,-47.9+48-3.75-0.005+0.6,150-14+29])rotate([0,90,180])endstop_mod_top_2_fix_cut();
@@ -466,7 +468,7 @@ translate([-20+5+0,1.539-2+0,-6.6])translate([80,-50,60])cube([20-5,45-0-0,110-0
 translate([-20+5,1.539+45-15,-6.6])translate([80,-50,60])cube([20-5,15,110+24-0]);
 translate([-20-30,1.539+45-8,-6.6])translate([80,-50,60])cube([20+20,8,111-0]);
 }
-#translate([66,-11,160])cylinder(r=2/2,h=30,$fn=300);
+translate([66,-11,160])cylinder(r=2/2,h=30,$fn=300);
 translate([-20-30,1.539+45-8-4,-6.6])translate([80,-50,60+4])cube([18,8,111-40]);
 translate([0,0,3]){
 translate([0,-48.5,120-5.4])rotate([0,90,0])cylinder(r=2.8/2,h=100,$fn=300);
@@ -505,8 +507,8 @@ translate([47.5-0.21-70-3.2+0.05,-12.2-0.125+10-3-5.6+6.5-2.1,100-5+45-0.1+0.05-
 translate([47.5-0.21+26,-12.2-0.2-15,100-5-10+8-50+8.495])color("peru")cylinder(r=(6.7)/2,h=(67-15.79)/2,$fn=300);
 translate([47.5-0.21+26,-12.2-0.2-15,100-5-10+8-50+8.495])color("peru")cylinder(r=(2.9)/2,h=(150),$fn=300);
 translate([47.5-0.21+26,-12.2-0.2-15,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(6.7)/2,h=(67-15.79)/2,$fn=300);
-#translate([47.5-0.21+26,-12.2-0.2-15-15,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(2.9)/2,h=(167-15.79)/2,$fn=300);
-#translate([47.5-0.21+26-28,-12.2-0.2-15-15+36,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(2.9)/2,h=(200)/2,$fn=300);
+translate([47.5-0.21+26,-12.2-0.2-15-15,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(2.9)/2,h=(167-15.79)/2,$fn=300);
+translate([47.5-0.21+26-28,-12.2-0.2-15-15+36,100-5-10+8-50+8.495+90])color("peru")cylinder(r=(2.9)/2,h=(200)/2,$fn=300);
 translate([34-0.075,0-4+0.45-3.1,70-1.35])rotate([-90,0,0])cylinder(r=6.1/2,h=10,$fn=300);
 translate([34-0.075+38.5,0-4+0.45-3.1,70-1.35-8.8])rotate([-90,0,0])cylinder(r=6.1/2,h=10,$fn=300);
 translate([34-0.075+38.7,0-4+0.45-3.1,70-1.35-8.8+78.6])rotate([-90,0,0])cylinder(r=6.1/2,h=10,$fn=300);
@@ -527,7 +529,7 @@ difference(){
 translate([69,-33.5-0.2-0.025,129.5-0.2])cube([39.85,12+0.4+0.05,8+0.3+0.05]);
 //translate([69,-33.5,129.5])cube([39.85,12,8]);
 //translate([-1.5+75-2+1+1.5+1-1.8+0.5,-27.5,100])color("pink")cylinder(r=3.1/2,h=100,$fn=300);
-//#translate([-1.5+75+25+5,-27.5,100])color("pink")cylinder(r=3./2,h=100,$fn=300);
+//translate([-1.5+75+25+5,-27.5,100])color("pink")cylinder(r=3./2,h=100,$fn=300);
 }
 }
 
@@ -649,7 +651,7 @@ translate([60+5-30,-2+2-60+12,8.8+35])translate([11,5,0])cylinder(r=2.9/2,h=30,$
 translate([60+5-30+25,-0+2-60+12,8.8+35])translate([11,5,0])cylinder(r=2.9/2,h=30,$fn=300);
 translate([60+5-30+26,30+-0+2-60+12,8.8+35])translate([11,5,0])cylinder(r=2.9/2,h=30,$fn=300);
 
-#translate([-20+1.8-1,1.539,-6.6])translate([200,0,225.5])rotate([0,180,0])mgn12_hole();
+translate([-20+1.8-1,1.539,-6.6])translate([200,0,225.5])rotate([0,180,0])mgn12_hole();
 
 }
 translate([0,0,-3])bambulab_extruder();
@@ -671,7 +673,7 @@ module parts_cooling_fan_screwattach_ring(){
 //translate([60+5-30,-2+2-60+12,8.8+35])
 difference(){
 union(){
-#translate([32,-22-2,45-1.1])scale([0.5,0.5,1])rotate([0,0,180])import("DuctIVSingle_base.stl");
+translate([32,-22-2,45-1.1])scale([0.5,0.5,1])rotate([0,0,180])import("DuctIVSingle_base.stl");
 difference(){
 union(){
 hull(){
@@ -686,7 +688,7 @@ translate([60+5-30+10.5-5-13,-2+2-60+12+15-2-4+8,8.8+38])cube([13,15+14-16,20]);
 //translate([60+5-2+0-20+3,-2+2-46.5,8.8])rotate([0,0,180])import("parts-cooling-fan.stl");
 translate([60+5-30,-2+2-60+12,8.8+35])translate([0,0,0.10]){
 translate([5,2+17-2,5.8])cube([10,13,3]);
-//#translate([5,2+17-2-12,5.8-5.8])cube([10,38,8.8]);
+//translate([5,2+17-2-12,5.8-5.8])cube([10,38,8.8]);
 hull(){
 translate([5,2+17-2-12,5.8-5.8])cube([2,9,8.8]);
 translate([2,2,0])cube([7,10,7.7+1.1]);
@@ -699,7 +701,7 @@ translate([5-8+35,1+28+11-1,0])cube([10,14.3-10,7.7+1.1]);
 translate([5-8+40,1+28+11-1-37,0])cube([6,14.3+28,7.7+1.1]);
 translate([5-8+40,1+28+11-1-37+8,0])cylinder(r=5,h=7.7+1.1,$fn=300);
 translate([5-8+40,1+28+11-1-37+8+27,0])cylinder(r=4.5,h=7.7+1.1,$fn=300);
-//#translate([37,1,0])cube([12,39,7.7]);
+//translate([37,1,0])cube([12,39,7.7]);
 }
 }
 translate([60+5-11,-2+2-23.5,8.8+20]){
@@ -728,7 +730,7 @@ translate([76,-15,47])cylinder(r=6.1/2,h=3.3,$fn=300);
 translate([76,-15-22,47])cylinder(r=6.1/2,h=3.3,$fn=300);
 }
 //cube([]);
-#translate([5-8+40,1+28+11-1-37-50,52.7])cube([6+40,14.3+28,7.7+1.1]);
+translate([5-8+40,1+28+11-1-37-50,52.7])cube([6+40,14.3+28,7.7+1.1]);
 
 }
 }
@@ -1071,7 +1073,7 @@ translate([7.4/2+0.2+5.7,11/2+5.6,0])cylinder(r=5/2,h=23.45,$fn=300);
 }
 translate([49,-35+3.8,70+12-0.05])rotate([0,0,0])bambulab_hotend();
 translate([49,-35+3.8,70+12]){
-translate([-7+4.25,0,0]){
+translate([-7+4.25+2,0,0]){
 translate([-7.4/2-20,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=6/2,h=25,$fn=300);
 translate([-7.4/2-20,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=6/2,h=25,$fn=300);
 }
@@ -1080,14 +1082,17 @@ translate([-7.4/2-20,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=3.3/2,h=25,$fn=300
 translate([-7.4/2-20+25,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=3.2/2,h=25,$fn=300);
 translate([-7.4/2-20+25,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=3.2/2,h=25,$fn=300);
 
+translate([2,0,-2]){
 translate([-7.4/2-20+25+11-1,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=6.45/2,h=4,$fn=6);
 translate([-7.4/2-20+25+11-1,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=6.45/2,h=4,$fn=6);
-
+}
+translate([-7.4/2-20+25+11-1+2,11/2+3.3,3.5])rotate([0,90,0])cylinder(r=6.45/2,h=4,$fn=6);
+translate([-7.4/2-20+25+11-1+2,11/2-3.3,3.5])rotate([0,90,0])cylinder(r=6.45/2,h=4,$fn=6);
 
 translate([7.4/2+0.2,11/2,-2])cylinder(r=3.1/2,h=70,$fn=300);
 }
 
-translate([61.2+3-0.5,-35,60])cube([20,20,60]);
+translate([61.2+3-0.5+2,-35,60])cube([20,20,60]);
 
 }
 }
@@ -1438,6 +1443,7 @@ translate([0,-28.5,0])translate([74.8-5.25-0.25-27.5-3+5+5,-25.48+12.85,62.4])ro
 
 
 translate([70-5.25-0.25,-25.48,80+3.3-2])cylinder(r=5.05/2,h=30,$fn=300);
+translate([70-5.25-0.25-5-23+21+2,-25.48-8.75+0.5,80+3.3+4.60-0.2-30])rotate([0,0,0])cube([11.2,18,35]);
 translate([70-5.25-0.25-5-23+21,-25.48-8.75+0.5,80+3.3+4.60-0.2-30])rotate([0,0,0])cube([11.2,18,35]);
 translate([70-5.25-0.25-5-23,-25.48-8.75+0.5,80+3.3+4.60-0.2-30])rotate([0,0,0])cube([11.2,18,30]);
 //translate([74.8-5.25-0.25,27.5-1.5+10,-25.48+12.85,62.4])rotate([0,90,0])color("silver")cylinder(r=9.3/2,h=18.3+5,$fn=300);
