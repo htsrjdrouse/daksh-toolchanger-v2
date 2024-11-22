@@ -13,22 +13,33 @@ include <holder_half.scad>
 //bambulab_extruder();
 
 
+translate([20,20,0]){
+dowel_pin(4.2);
+translate([0,0-0.0,-2.])m5nut(9.45);
+//translate([0,0,-2])m5nut(9); //good for bottom
+//translate([0,0,-2])m5nut(9.12); //good for top
+}
+
 
 /*
+translate([80,-54.5+14.5,155.9-86.17])rotate([0,90,0])rotate([0,0,30]){
 translate([20,20,0]){
 dowel_pin(4.2);
 //translate([0,0,-2])m5nut(9.38);
-translate([0,0,-2])m5nut(9); //good for bottom
-//translate([0,0,-2])m5nut(9.12); //good for top
+//translate([0,0,-2])m5nut(9); //good for bottom
+translate([0,0,-2])m5nut(9.12); //good for top
 }
+}
+
 */
 
 //mgn12_block();
 
+
 //toolchange_openscad();
-translate([0,0,-1])toolhead_top_1_clone_openscad();
+//translate([0,0,-1])toolhead_top_1_clone_openscad();
 //parts_cooling_fan_screwattach_ring();
-//color("lime")import("toolhead_bottom_fix_improved_bambu_coolingfan_attach.stl");
+///color("lime")import("toolhead_bottom_fix_improved_bambu_coolingfan_attach.stl");
 //toolhead_bottom_fix_improved_bambu_coolingfan_attach();
 //translate([-20+1.8-1,1.539,-6.6])translate([200,0,225.5])rotate([0,180,0])mgn12_hole();
 //import("toolhead_top_1_fix_nom3fittings_endstop_mechanicalwire.stl");
@@ -526,10 +537,10 @@ translate([90-5-5-0.231-20,-47.9+0.5,150-14-9])cube([30,5,8]);
 
 module mgn12_block(){
 difference(){
-translate([69,-33.5-0.2-0.025,129.5-0.2])cube([39.85,12+0.4+0.05,8+0.3+0.05]);
+translate([69,-33.5-0.2-0.025+0.025+0.025,129.5-0.2])cube([39.85,12+0.4+0.05-0.05-0.05,8+0.3+0.05-0.05-0.05]);
 //translate([69,-33.5,129.5])cube([39.85,12,8]);
-//translate([-1.5+75-2+1+1.5+1-1.8+0.5,-27.5,100])color("pink")cylinder(r=3.1/2,h=100,$fn=300);
-//translate([-1.5+75+25+5,-27.5,100])color("pink")cylinder(r=3./2,h=100,$fn=300);
+translate([-1.5+75-2+1+1.5+1-1.8+0.5,-27.5,100])color("pink")cylinder(r=3.1/2,h=100,$fn=300);
+translate([-1.5+75+25+5,-27.5,100])color("pink")cylinder(r=3./2,h=100,$fn=300);
 }
 }
 
