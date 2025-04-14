@@ -43,7 +43,7 @@ serial: /tmp/klipper_host_mcu_camera_pi
 
 #!/bin/bash
 
-# Remove stale socket file if it exists
+Remove stale socket file if it exists
 if [ -e /tmp/klipper_host_mcu_camera_pi_local ]; then
     sudo rm /tmp/klipper_host_mcu_camera_pi_local
 fi
@@ -59,4 +59,11 @@ Add before exit 0:
 
 text
 python /home/username/camera_control.py &
+
+
+Assign GPIO pins
+
+GPIO18 for the LED, GPIO23 for the dock sensor, GPIO24 for the carriage sensor
+
+
 
