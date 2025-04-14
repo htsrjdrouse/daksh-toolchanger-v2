@@ -37,4 +37,26 @@ ls /tmp/klipper_host_mcu*
 [mcu camera_pi]
 serial: /tmp/klipper_host_mcu_camera_pi
 
+9. On the klipperPi set up ssh keys (e.g., ssh-copy-id to clientPi)
+    
+10. Create a ssh tunnel as a bash shell script that looks like this (I call the script camera_control.py &):
+
+#!/bin/bash
+
+# Remove stale socket file if it exists
+if [ -e /tmp/klipper_host_mcu_camera_pi_local ]; then
+    sudo rm /tmp/klipper_host_mcu_camera_pi_local
+fi
+
+ssh -N -L /tmp/klipper_host_mcu_camera_pi_local:/tmp/klipper_host_mcu_camera_pi username@clientPi
+
+11. Autostart Script on Camera Pi
+Add the script to /etc/rc.local for startup:
+
+bash
+sudo nano /etc/rc.local
+Add before exit 0:
+
+text
+python /home/username/camera_control.py &
 
