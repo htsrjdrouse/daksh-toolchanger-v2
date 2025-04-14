@@ -65,5 +65,33 @@ Assign GPIO pins
 
 GPIO18 for the LED, GPIO23 for the dock sensor, GPIO24 for the carriage sensor
 
+12. Here is the recipe for installing camera-streamer
 
+13. Updated installation steps:
+
+First, let's clean up the current directory and start fresh:
+
+cd ~
+rm -rf camera-streamer
+
+Clone the repository with submodules:
+
+git clone --recursive https://github.com/ayufan/camera-streamer.git
+cd camera-streamer
+
+If you've already cloned without the --recursive flag, initialize and update the submodules:
+
+git submodule update --init --recursive
+
+Install additional dependencies:
+
+sudo apt install -y libcamera-dev liblivemedia-dev libssl-dev libboost-dev libboost-program-options-dev libboost-system-dev libdrm-dev
+
+Now attempt to build again:
+
+make
+
+After successful build, install:
+
+sudo make install
 
