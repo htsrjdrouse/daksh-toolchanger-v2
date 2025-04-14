@@ -95,3 +95,13 @@ After successful build, install:
 
 sudo make install
 
+14. You need to open up the firewall for the port 8080
+sudo ufw allow 8080
+
+15. Then run the command:
+    camera-streamer   --camera-path=/base/soc/i2c0mux/i2c@1/imx519@1a   --camera-type=libcamera   --camera-width=1920   --camera-height=1080   --camera-fps=30   --camera-options=--autofocus-mode=continuous   --http-listen=0.0.0.0   --http-port=8080
+
+Then go to your browser and enter the right ip address:
+http://[ip address]:8080/
+
+
