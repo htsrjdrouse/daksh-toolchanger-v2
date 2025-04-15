@@ -99,7 +99,7 @@ sudo make install
 sudo ufw allow 8080
 
 15. Then run the command:
-    camera-streamer   --camera-path=/base/soc/i2c0mux/i2c@1/imx519@1a   --camera-type=libcamera   --camera-width=1920   --camera-height=1080   --camera-fps=30   --camera-options=--autofocus-mode=continuous   --http-listen=0.0.0.0   --http-port=8080
+camera-streamer   --camera-path=/base/soc/i2c0mux/i2c@1/imx519@1a   --camera-type=libcamera   --camera-width=1920   --camera-height=1080   --camera-fps=30   --camera-options=--autofocus-mode=continuous   --http-listen=0.0.0.0   --http-port=8080   --camera-format=MJPG
 
 Then go to your browser and enter the right ip address:
 http://[ip address]:8080/
