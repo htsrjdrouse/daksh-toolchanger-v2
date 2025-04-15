@@ -76,32 +76,36 @@ cd ~
 rm -rf camera-streamer
 
 Clone the repository with submodules:
-
+```
 git clone --recursive https://github.com/ayufan/camera-streamer.git
 cd camera-streamer
-
+```
 If you've already cloned without the --recursive flag, initialize and update the submodules:
-
+```
 git submodule update --init --recursive
-
+```
 Install additional dependencies:
-
+```
 sudo apt install -y libcamera-dev liblivemedia-dev libssl-dev libboost-dev libboost-program-options-dev libboost-system-dev libdrm-dev
-
+``
 Now attempt to build again:
-
+```
 make
-
+```
 After successful build, install:
-
+```
 sudo make install
-
+```
 14. You need to open up the firewall for the port 8080
+
+```
 sudo ufw allow 8080
+```
 
 15. Then run the command:
+```
 camera-streamer   --camera-path=/base/soc/i2c0mux/i2c@1/imx519@1a   --camera-type=libcamera   --camera-width=1920   --camera-height=1080   --camera-fps=30   --camera-options=--autofocus-mode=continuous   --http-listen=0.0.0.0   --http-port=8080   --camera-format=MJPG
-
+```
 Then go to your browser and enter the right ip address:
 http://[ip address]:8080/
 
