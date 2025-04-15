@@ -90,6 +90,7 @@ sudo apt install -y libcamera-dev liblivemedia-dev libssl-dev libboost-dev libbo
 ```
 Now attempt to build again:
 ```
+sed -i 's/-Werror//g' Makefile
 make
 ```
 After successful build, install:
