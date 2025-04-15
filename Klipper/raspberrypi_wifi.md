@@ -47,9 +47,9 @@ serial: /tmp/klipper_host_mcu_camera_pi
 if [ -e /tmp/klipper_host_mcu_camera_pi_local ]; then
     sudo rm /tmp/klipper_host_mcu_camera_pi_local
 fi
-```
-ssh -N -L /tmp/klipper_host_mcu_camera_pi_local:/tmp/klipper_host_mcu_camera_pi username@clientPi
 
+ssh -N -L /tmp/klipper_host_mcu_camera_pi_local:/tmp/klipper_host_mcu_camera_pi username@clientPi
+```
 11. Autostart Script on Camera Pi
 Add the script to /etc/rc.local for startup:
 
