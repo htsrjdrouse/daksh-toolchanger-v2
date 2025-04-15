@@ -4,14 +4,15 @@ This installs klipper on a rasppi (called clientPi) so that the Rasppi running k
 cd klipper
 
 2. make menuconfig
+Select linux process and Enable extra low-level configuration options   
 make clean
 make
 
-3. ls -l /home/[username]/klipper/out/klipper.elf
-4. test it /home/[username]/klipper/out/klipper.elf -I /tmp/klipper_host_mcu_camera_pi
-5. If it runs and creates /tmp/klipper_host_mcu_camera_pi, it’s functionally klipper_mcu. Rename it: mv /home/[username]/klipper/out/klipper.elf /home/[username]/klipper/out/klipper_mcu
+4. ls -l /home/[username]/klipper/out/klipper.elf
+5. test it /home/[username]/klipper/out/klipper.elf -I /tmp/klipper_host_mcu_camera_pi
+6. If it runs and creates /tmp/klipper_host_mcu_camera_pi, it’s functionally klipper_mcu. Rename it: mv /home/[username]/klipper/out/klipper.elf /home/[username]/klipper/out/klipper_mcu
 chmod +x /home/[ussername]/klipper/out/klipper_mcu
-6. Edit service file sudo nano /etc/systemd/system/klipper-mcu.service:
+7. Edit service file sudo nano /etc/systemd/system/klipper-mcu.service:
 
 [Unit]
 Description=Klipper MCU Service for Camera Pi
