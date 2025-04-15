@@ -87,7 +87,7 @@ git submodule update --init --recursive
 Install additional dependencies:
 ```
 sudo apt install -y libcamera-dev liblivemedia-dev libssl-dev libboost-dev libboost-program-options-dev libboost-system-dev libdrm-dev
-``
+```
 Now attempt to build again:
 ```
 make
