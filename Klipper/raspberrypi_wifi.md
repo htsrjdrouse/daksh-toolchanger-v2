@@ -59,7 +59,7 @@ sudo nano /etc/rc.local
 Add before exit 0:
 
 text
-python /home/username/camera_control.py &
+python /home/username/camera_control.sh &
 
 
 Assign GPIO pins
