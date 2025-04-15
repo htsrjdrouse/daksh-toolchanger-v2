@@ -91,6 +91,9 @@ sudo apt install -y libcamera-dev liblivemedia-dev libssl-dev libboost-dev libbo
 Now attempt to build again:
 ```
 sed -i 's/-Werror//g' Makefile
+sudo apt install -y xxd
+sudo apt install -y cmake
+sudo apt install -y build-essential pkg-config
 make
 ```
 After successful build, install:
