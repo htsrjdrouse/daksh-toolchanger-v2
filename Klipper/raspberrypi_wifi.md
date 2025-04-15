@@ -40,7 +40,7 @@ serial: /tmp/klipper_host_mcu_camera_pi
 
 9. On the klipperPi set up ssh keys (e.g., ssh-copy-id to clientPi)
     
-10. Create a ssh tunnel as a bash shell script that looks like this (I call the script camera_control.py &):
+10. Create a ssh tunnel as a bash shell script that looks like this (I call the script camera_control.sh &):
 ```
 #!/bin/bash
 
