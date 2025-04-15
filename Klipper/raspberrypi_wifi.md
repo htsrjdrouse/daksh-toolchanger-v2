@@ -103,6 +103,7 @@ sudo make install
 14. You need to open up the firewall for the port 8080
 
 ```
+sudo apt install ufw
 sudo ufw allow 8080
 ```
 
