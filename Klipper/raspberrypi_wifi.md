@@ -134,3 +134,21 @@ Target FPS: 30
 Flip Horizontal/Vertical: as needed
 
 
+This worked:
+Here's how to configure it in Mainsail's UI:
+
+```
+In the Mainsail interface, go to "Settings" → "Webcams"
+Click "Add Webcam"
+Configure as follows:
+
+Name: Printer Cam
+Service: mjpeg-streamer
+Stream URL: http://[camera-pi-ip]:8080/stream
+Snapshot URL: http://[camera-pi-ip]:8080/snapshot
+Target FPS: 30
+Flip options: as needed
+```
+
+
+
