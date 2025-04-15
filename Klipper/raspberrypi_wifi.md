@@ -119,6 +119,18 @@ Now install crowsnest, first download kiauh
 git clone https://github.com/dw-0/kiauh.git
 ./kiauh/kiauh.sh
 ```
-Install crowsnest using it
+Install crowsnest using it, I cannot figure out how to install crowsnest but you can get mainsail to work with camera-streamer instead. 
+
+Here's how to update your Klipper configuration:
+
+On your main Raspberry Pi that runs Klipper (not the camera Pi), you'll need to update the webcam configuration.
+If you're using Mainsail, go to the Mainsail interface in your browser and navigate to the "Settings" tab.
+Look for the "Webcams" section and add or modify the camera configuration:
+
+Name: Your camera name (e.g., "Printer Cam")
+URL: http://[camera-pi-ip]:8080/stream (replace [camera-pi-ip] with the actual IP address)
+Service: Custom
+Target FPS: 30
+Flip Horizontal/Vertical: as needed
 
 
