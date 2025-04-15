@@ -44,11 +44,12 @@ serial: /tmp/klipper_host_mcu_camera_pi
 ```
 #!/bin/bash
 
+# Remove stale socket file if it exists
 if [ -e /tmp/klipper_host_mcu_camera_pi_local ]; then
     sudo rm /tmp/klipper_host_mcu_camera_pi_local
 fi
 
-ssh -N -L /tmp/klipper_host_mcu_camera_pi_local:/tmp/klipper_host_mcu_camera_pi username@clientPi
+ssh -N -L /tmp/klipper_host_mcu_camera_pi_local:/tmp/klipper_host_mcu_camera_pi pi@192.168.1.161
 ```
 11. Autostart Script on Camera Pi
 Add the script to /etc/rc.local for startup:
