@@ -114,4 +114,11 @@ camera-streamer   --camera-path=/base/soc/i2c0mux/i2c@1/imx519@1a   --camera-typ
 Then go to your browser and enter the right ip address:
 http://[ip address]:8080/
 
+Now install crowsnest, first download kiauh
+```
+git clone https://github.com/dw-0/kiauh.git
+./kiauh/kiauh.sh
+```
+Install crowsnest using it
+
 
