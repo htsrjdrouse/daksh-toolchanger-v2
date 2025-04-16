@@ -66,7 +66,11 @@ Assign GPIO pins
 
 GPIO18 for the LED, GPIO23 for the dock sensor, GPIO24 for the carriage sensor
 
-12. Here is the recipe for installing camera-streamer
+
+
+
+
+#12. Here is the recipe for installing camera-streamer
 
 13. Updated installation steps:
 
